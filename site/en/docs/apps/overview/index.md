@@ -6,18 +6,18 @@ updated: 2018-04-26
 description: An overview of Chrome Apps and why you might want to build them.
 ---
 
-!!!.aside.aside--caution
+{% Aside 'caution' %}
 
 **Important:** Chrome will be removing support for Chrome Apps on all platforms. Chrome browser and
 the Chrome Web Store will continue to support extensions. [**Read the announcement**][1] and learn
 more about [**migrating your app**][2].
 
-!!!
+{% endAside %}
 
 Chrome Apps let you use HTML5, CSS, and JavaScript to deliver an experience comparable to a native
 application.
 
-{% youtube id="lBUGTVIJVfM" %}
+{% YouTube id="lBUGTVIJVfM" %}
 
 ## Why build a Chrome App? {: #why-build }
 
@@ -46,17 +46,17 @@ appealing, inexpensive, low maintenance devices that provide a full web experien
 
 ### Extend your development capability {: #extend }
 
-You might be thinking, “If I write a standard web application, I can run it on any platform that has
-a web browser.” Of course, this is absolutely right, but remember that Chrome Apps extend your
+You might be thinking, "If I write a standard web application, I can run it on any platform that has
+a web browser." Of course, this is absolutely right, but remember that Chrome Apps extend your
 development capacity beyond what you can do with traditional web apps:
 
 - Chrome Apps can integrate seamlessly into the desktop and look more like desktop applications than
   traditional web apps.
 - Chrome Apps for Desktop have no omnibox (address bar) and tab strip like normal browser-based
-  apps, because like native desktop apps, they don’t live in a browser.
+  apps, because like native desktop apps, they don't live in a browser.
 - The Chrome App Launcher makes it easy for users to find and start your Chrome App.
 - OS X users can use the integrated spotlight search to find and start your app.
-- Chrome Apps for Desktop can access the host computer’s file system and make use of hardware
+- Chrome Apps for Desktop can access the host computer's file system and make use of hardware
   features (like USB, Bluetooth and attached human interface devices).
 
 The best way to see what Chrome Apps look like is to [install some][4].
@@ -89,10 +89,10 @@ Chromebooks.
 
 Use the full featured IDE in the [Chrome Dev Editor][8].
 
-{% youtube id="NNLnTz6yIc4" %}
+{% YouTube id="NNLnTz6yIc4" %}
 
-[1]: https://blog.chromium.org/2020/01/moving-forward-from-chrome-apps.html
-[2]: https://developer.chrome.com/apps/migration
+[1]: https://blog.chromium.org/2020/08/changes-to-chrome-app-support-timeline.html
+[2]: /apps/migration
 [3]: apps/chrome_apps_on_mobile
 [4]: https://chrome.google.com/webstore/category/apps?_feature=chromeapp
 [5]: https://classroom.google.com/

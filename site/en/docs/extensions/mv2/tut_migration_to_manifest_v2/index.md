@@ -65,7 +65,7 @@ version 2, followed by more detailed summaries of what these changes mean and wh
   instead.
 
 - Does your extension inject content scripts into Web pages that need to access resources (like
-  images and scripts) that are contained in the extension’s package?
+  images and scripts) that are contained in the extension's package?
 
 - Define the [web_accessible_resources][3] property and list the resources (and optionally a
   separate Content Security Policy for those resources).
@@ -77,7 +77,7 @@ version 2, followed by more detailed summaries of what these changes mean and wh
 - Is your code or library using `eval()`, new `Function()`, `innerHTML`, `setTimeout()`, or
   otherwise passing strings of JS code that are dynamically evaluated?
 
-- Use `JSON.parse()` if you’re parsing JSON code into an object.
+- Use `JSON.parse()` if you're parsing JSON code into an object.
 - Use a CSP-friendly library, for example, [AngularJS][5].
 - Create a sandbox entry in your manifest and run the affected code in the sandbox, using
   `postMessage()` to communicate with the sandboxed page.
@@ -135,7 +135,7 @@ A few extension APIs have been removed and replaced with new counterparts:
 ## Summary of security changes {: #security-summary }
 
 There are a number of security-related changes that accompany the move from manifest version 1 to
-version 2. Many of these changes stem from Chrome’s adoption of [Content Security Policy][7]; you
+version 2. Many of these changes stem from Chrome's adoption of [Content Security Policy][7]; you
 should read more about this policy to understand its implications.
 
 ### Inline scripts and event handlers disallowed {: #inline_scripts }
@@ -144,7 +144,7 @@ Due to the use of [Content Security Policy][8], you can no longer use `<script>`
 with the HTML content. These must be moved to external JS files. In addition, inline event handlers
 are also not supported. For example, suppose you had the following code in your extension:
 
-```
+```html
 <html>
 <head>
   <script>
@@ -155,12 +155,12 @@ are also not supported. For example, suppose you had the following code in your 
 ```
 
 This code would cause an error at runtime. To fix this, move `<script>` tag contents to external files
-and reference them with a `src=’path_to_file.js’` attribute.
+and reference them with a `src='path_to_file.js'` attribute.
 
 Similarly, inline event handlers, which are a common occurrence and convenience feature used by many
 Web developers, will not execute. For example, consider common instances such as:
 
-```
+```html
 <body onload="initialize()">
 <button onclick="handleClick()" id="button1">
 ```
@@ -169,13 +169,13 @@ These will not work in manifest V2 extensions. Remove the inline event handlers,
 external JS file and use `addEventListener()` to register event handlers for them instead. For
 example, in your JS code, use:
 
-```
+```html
 window.addEventListener("load", initialize);
 ...
 document.getElementById("button1").addEventListener("click",handleClick);
 ```
 
-This is a much cleaner way of separating your extension’s behavior from its user interface markup.
+This is a much cleaner way of separating your extension's behavior from its user interface markup.
 
 ### Embedding content {: #embedding }
 
@@ -187,7 +187,7 @@ If your extension embeds resources (like images, script, CSS styles, etc) that a
 scripts that are injected into web pages, you need to use the [web_accessible_resources][9] property
 to allowlist these resources so that external Web pages can use them:
 
-```
+```json
 {
 ...
   "web_accessible_resources": [
@@ -206,10 +206,10 @@ There are two ways to do this:
 
 1.  Download the relevant library locally (like jQuery) and package it with your extension.
 2.  You can relax the CSP in a limited way by allowlisting HTTPS origins in the
-    “content_security_policy” section of your manifest. To include a library like Google Analytics,
+    "content_security_policy" section of your manifest. To include a library like Google Analytics,
     this is the approach to take:
 
-    ```
+    ```json
     {
       ...,
       "content_security_policy": "script-src 'self'

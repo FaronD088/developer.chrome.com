@@ -6,15 +6,15 @@ updated: 2014-06-06
 description: An overview of the software architecture of Chrome Apps.
 ---
 
-!!!.aside.aside--caution
+{% Aside 'caution' %}
 
 **Important:** Chrome will be removing support for Chrome Apps on all platforms. Chrome browser and
 the Chrome Web Store will continue to support extensions. [**Read the announcement**][1] and learn
 more about [**migrating your app**][2].
 
-!!!
+{% endAside %}
 
-Chrome Apps integrate closely with a user’s operating system. They are designed to be run outside of
+Chrome Apps integrate closely with a user's operating system. They are designed to be run outside of
 a browser tab, to run robustly in offline and poor connectivity scenarios and to have far more
 powerful capabilities than are available in a typical web browsing environment. The app container,
 programming, and security models support these Chrome App requirements.
@@ -24,7 +24,7 @@ programming, and security models support these Chrome App requirements.
 The app container describes the visual appearance and loading behavior of Chrome Apps. Chrome Apps
 look different than traditional web apps because the app container does not show any traditional web
 page UI controls; it simply contains a blank rectangular area. This allows an app to blend with
-“native” apps on the system, and it prevents the user from “messing” with the app logic by manually
+"native" apps on the system, and it prevents the user from "messing" with the app logic by manually
 changing the URL.
 
 Chrome Apps are loaded differently than web apps. Both load the same type of content: HTML documents
@@ -33,7 +33,7 @@ tab. Also, the app container must load the main document of the Chrome App from 
 forces all Chrome Apps to be at least minimally functional when offline and it provides a place to
 enforce stricter security measures.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/1elqMcady4myIQ5qqQxA.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/1elqMcady4myIQ5qqQxA.png",
        alt="how app container model works", height="172", width="671" %}
 
 ## Programming model {: #programming }
@@ -43,12 +43,12 @@ apps, the goal of this programming model is to give users and their systems full
 app lifecycle. The Chrome App lifecycle should be independent of browser window behavior or a
 network connection.
 
-The “event page” manages the Chrome App lifecycle by responding to user gestures and system events.
+The "event page" manages the Chrome App lifecycle by responding to user gestures and system events.
 This page is invisible, only exists in the background, and can be closed automatically by the system
 runtime. It controls how windows open and close and when the app is started or terminated. There can
-only be one “event page” for a Chrome App.
+only be one "event page" for a Chrome App.
 
-{% youtube id="yr1jgREbH8U" %}
+{% YouTube id="yr1jgREbH8U" %}
 
 ### App lifecycle at a glance {: #lifecycle }
 
@@ -72,16 +72,16 @@ on a per window basis. This allows you to minimize the code in your app that has
 APIs, while still getting to use them.
 
 Chrome Apps reuse Chrome extension process isolation, and take this a step further by isolating
-storage and external content. Each app has its own private storage area and can’t access the storage
+storage and external content. Each app has its own private storage area and can't access the storage
 of another app or personal data (such as cookies) for websites that you use in your browser. All
 external processes are isolated from the app. Since iframes run in the same process as the
 surrounding page, they can only be used to load other app pages. You can use the `object` tag to
 [embed external content][8]; this content runs in a separate process from the app.
 
-{% youtube id="EDtiWN42lHs" %}
+{% YouTube id="EDtiWN42lHs" %}
 
-[1]: https://blog.chromium.org/2020/01/moving-forward-from-chrome-apps.html
-[2]: https://developer.chrome.com/apps/migration
+[1]: https://blog.chromium.org/2020/08/changes-to-chrome-app-support-timeline.html
+[2]: /apps/migration
 [3]: app_lifecycle
 [4]: declare_permissions
 [5]: app_lifecycle#eventpage

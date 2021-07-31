@@ -60,9 +60,9 @@ as well as in the side navigation when viewing an individual doc.
 
 The `toc.yml` supports these fields:
 
-- `url` — an absolute url path to your doc
-- `title` — the title for a subsection in `i18n` path notation (explained below.)
-- `sections` — a collection of more urls, nested under a `title`.
+- `url`—an absolute url path to your doc
+- `title`—the title for a subsection in `i18n` path notation (explained below.)
+- `sections`—a collection of more urls, nested under a `title`.
 
 ```yml
 - url: /docs/cheese/what-is-cheese  # a single doc
@@ -79,8 +79,8 @@ The `toc.yml` supports these fields:
 
 ### Add styles and icon for your project
 
-Add an icon at `site/_images/project/[project-key].svg`. This should be a
-small SVG rendered in white. See the existing icons for examples.
+Add an icon at `site/_static/images/project/[project-key].svg`. This should be
+a small SVG rendered in white. See the existing icons for examples.
 
 If you'd like this icon to render on a different color than the default blue,
 you can optionally add a peer `styles.yml` to your `toc.yml` file. For example:
@@ -118,7 +118,7 @@ overview:
   es: 'Visión General'
 ```
 
-If you aren't ready to translate your docs—**yet that's OK!** Just add an `en`
+If you aren't ready to translate your docs yet that's OK!. Just add an `en`
 field for now.
 
 Finally, in your `toc.yml`, add the path to this object:

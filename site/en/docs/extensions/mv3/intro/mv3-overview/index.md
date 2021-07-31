@@ -9,7 +9,7 @@ title: Overview of Manifest V3
 subhead: 'Key changes and features of Manifest V3.'
 
 # This appears in the ToC of the project landing page at
-# /docs/[project-name]/. It also appears in the <meta description> used in 
+# /docs/[project-name]/. It also appears in the <meta description> used in
 # Google Search.
 description: 'A description of the features and changes introduced by Manifest V3.'
 
@@ -67,17 +67,17 @@ This section introduces the most important and impactful features of MV3.
 Manifest V3 replaces background pages with service workers.
 
 Like their web page counterparts, extension service workers listen for and
-respond to events in order to enhance the end user’s experience. For web
+respond to events in order to enhance the end user's experience. For web
 service workers this typically means managing cache, preloading resources, and
 enabling offline web pages. While extension service workers can still do all of
 this, the extension package already contains a bundle of resources that can be
 accessed offline. As such, extension service workers tend to focus on reacting
-to relevant browser events exposed by Chrome’s extensions APIs.
+to relevant browser events exposed by Chrome's extensions APIs.
 
 
 ### Network request modification {: #network-request-modification }
 
-The way that extensions can modify network requests is changing in MV3. There’s
+The way that extensions can modify network requests is changing in MV3. There's
 a new [declarativeNetRequest](/docs/extensions/reference/declarativeNetRequest)
 API which lets extensions modify and block network requests in a
 privacy-preserving and performant way. The essence of this API is:
@@ -85,14 +85,14 @@ privacy-preserving and performant way. The essence of this API is:
 *   Rather than intercepting a request and modifying it procedurally, the extension asks Chrome to evaluate and modify requests on its behalf.
 *   The extension declares a set of rules: patterns to match requests and actions to perform when matched. The browser then modifies network requests as defined by these rules.
 
-Using this declarative approach dramatically reduces the need for persistent host permissions. 
+Using this declarative approach dramatically reduces the need for persistent host permissions.
 
-!!!.aside
+{% Aside %}
 Some extensions may still require broad host permissions for certain use cases
 (such as redirecting requests). See [Conditional permissions and
 declarativeNetRequest](/docs/extensions/mv3/intro/mv3-migration#declarativenetrequest-conditional-perms)
 for further details.
-!!!
+{% endAside %}
 
 The blocking version of the
 [webRequest](/docs/extensions/reference/webRequest)
@@ -109,9 +109,9 @@ blocking functionality, without requiring any host permissions.
 
 ### Remotely hosted code {: #remotely-hosted-code }
 
-A key security improvement in MV3 is that extensions can’t load remote code
+A key security improvement in MV3 is that extensions can't load remote code
 like JavaScript or Wasm files. This lets us more reliably and efficiently
-review the safe behavior of extensions when they’re submitted to the Chrome Web
+review the safe behavior of extensions when they're submitted to the Chrome Web
 Store. Specifically, all logic must be included in the extension's package.
 
 Instead of remote code, we recommend the use of remote configuration files. See
@@ -127,7 +127,7 @@ methods.
 
 You can use promise chains, as well as async/await. If you provide a callback
 to an API method, this prevents the promise from being returned. Therefore you
-can defer this part of your migration until you’re ready, or begin using
+can defer this part of your migration until you're ready, or begin using
 promises immediately.
 
 Some scenarios, such as event listeners, will still require callbacks.
@@ -147,7 +147,6 @@ The following features will be added to MV3 soon:
 
 * **Dynamic content scripts:** the new Scripting API lets extensions register and unregister content scripts at runtime.
 * **New favicon API:** this new JavaScript API replaces "chrome://favicons" and gives  developers a way to retrieve websites' favicons.
-* **Tab groups:** the Tabs API will be expanded to support Chrome's [Tab Groups](https://blog.google/products/chrome/manage-tabs-with-google-chrome/) feature.
 * **In-memory storage:** a new StorageArea on the Storage API that can be used to store values in memory across service worker restarts.
 
 Look for announcements of these and other MV3 features as they become available.

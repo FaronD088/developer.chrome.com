@@ -12,7 +12,7 @@ See [DevTools APIs summary][1] for general introduction to using Developer Tools
 
 The [`tabId`][2] property provides the tab identifier that you can use with the [`chrome.tabs.*`][3]
 API calls. However, please note that `chrome.tabs.*` API is not exposed to the Developer Tools
-extension pages due to security considerations — you will need to pass the tab ID to the background
+extension pages due to security considerations—you will need to pass the tab ID to the background
 page and invoke the `chrome.tabs.*` API functions from there.
 
 The `reload` method may be used to reload the inspected page. Additionally, the caller can specify
@@ -41,16 +41,16 @@ Here are the main differences between the `eval` and `tabs.executeScript` method
 - The evaluated code may return a value that is passed to the extension callback. The returned value
   has to be a valid JSON object (it may contain only primitive JavaScript types and acyclic
   references to other JSON objects). _Please observe extra care while processing the data received
-  from the inspected page — the execution context is essentially controlled by the inspected page; a
+  from the inspected page—the execution context is essentially controlled by the inspected page; a
   malicious page may affect the data being returned to the extension._
 
-!!!.aside.aside--caution
+{% Aside 'caution' %}
 
 **Important:** Due to the security considerations explained above, the [`tabs.executeScript`][4]
 method is the preferred way for an extension to access DOM data of the inspected page in cases where
 the access to JavaScript state of the inspected page is not required.
 
-!!!
+{% endAside %}
 
 Note that a page can include multiple different JavaScript execution contexts. Each frame has its
 own context, plus an additional context for each extension that has content scripts running in that
@@ -94,10 +94,10 @@ chrome.devtools.inspectedWindow.eval(
 
 You can find more examples that use Developer Tools APIs in [Samples][8].
 
-[1]: /docs/extensions/mv2/devtools
+[1]: /docs/extensions/mv3/devtools
 [2]: #property-tabId
 [3]: /docs/extensions/reference/tabs
 [4]: /docs/extensions/reference/tabs#method-executeScript
 [5]: https://developers.google.com/web/tools/chrome-devtools/
 [7]: https://www.ietf.org/rfc/rfc6454.txt
-[8]: /docs/extensions/mv2/samples#search:devtools
+[8]: /docs/extensions/mv3/samples#search:devtools

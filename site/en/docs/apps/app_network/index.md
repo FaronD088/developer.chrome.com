@@ -6,29 +6,29 @@ updated: 2014-11-13
 description: How to use TCP and UDP in your Chrome App.
 ---
 
-!!!.aside.aside--caution
+{% Aside 'caution' %}
 
 **Important:** Chrome will be removing support for Chrome Apps on all platforms. Chrome browser and
 the Chrome Web Store will continue to support extensions. [**Read the announcement**][1] and learn
 more about [**migrating your app**][2].
 
-!!!
+{% endAside %}
 
 Chrome Apps can act as a network client for TCP and UDP connections. This doc shows you how to use
 TCP and UDP to send and receive data over the network. For more information, see the [Sockets
 UDP][3], [Sockets TCP][4] and [Sockets TCP Server][5] APIs.
 
-!!!.aside.aside--note
+{% Aside %}
 
 **Note:** The previous version of the networking APIs ([socket][6]) has been deprecated.
 
-!!!
+{% endAside %}
 
-!!!.aside.aside--note
+{% Aside %}
 
 **API Samples:** Want to play with the code? Check out the [telnet][7] and [udp][8] samples.
 
-!!!
+{% endAside %}
 
 ## Manifest requirements {: #manifest }
 
@@ -55,7 +55,7 @@ end point permission rules. For example:
 
 The syntax of socket "host-pattern" entries follows these rules:
 
-```
+```text
 <host-pattern> := <host> | ':' <port> | <host> ':' <port>
 <host> := '*' | '*.' <anychar except '/' and '*'>+
 <port> := '*' | <port number between 1 and 65535>)
@@ -65,13 +65,13 @@ See [Sockets Manifest Key][10] for detailed description of the syntax.
 
 Examples of socket manifest entries:
 
-- `{ "tcp": { "connect" : "*:23" } }` – connecting on port 23 of any hosts
-- `{ "tcp": { "connect" : ["*:23", "*:80"] } }` – connecting on port 23 or 80 of any hosts
-- `{ "tcp": { "connect" : "www.example.com:23" } }` – connecting port 23 of _www.example.com_
-- `{ "tcp": { "connect" : "" } }` – connecting any ports of any hosts
-- `{ "udp": { "send" : ":99" } }` – sending UDP packet to port 99 of any hosts
-- `{ "udp": { "bind" : ":8899" } }` – binding local port 8899 to receive UDP packets
-- `{ "tcpServer": { "listen" : ":8080" } }` – TCP listening on local port 8080
+- `{ "tcp": { "connect" : "*:23" } }`–connecting on port 23 of any hosts
+- `{ "tcp": { "connect" : ["*:23", "*:80"] } }`–connecting on port 23 or 80 of any hosts
+- `{ "tcp": { "connect" : "www.example.com:23" } }`–connecting port 23 of _www.example.com_
+- `{ "tcp": { "connect" : "" } }`–connecting any ports of any hosts
+- `{ "udp": { "send" : ":99" } }`–sending UDP packet to port 99 of any hosts
+- `{ "udp": { "bind" : ":8899" } }`–binding local port 8899 to receive UDP packets
+- `{ "tcpServer": { "listen" : ":8080" } }`–TCP listening on local port 8080
 
 ## Using TCP {: #tcp }
 
@@ -249,8 +249,8 @@ chrome.sockets.tcpServer.onAccept.removeListener(onAccept);
 chrome.sockets.tcpServer.disconnect(serverSocketId);
 ```
 
-[1]: https://blog.chromium.org/2020/01/moving-forward-from-chrome-apps.html
-[2]: https://developer.chrome.com/apps/migration
+[1]: https://blog.chromium.org/2020/08/changes-to-chrome-app-support-timeline.html
+[2]: /apps/migration
 [3]: sockets_udp
 [4]: sockets_tcp
 [5]: sockets_tcp_server

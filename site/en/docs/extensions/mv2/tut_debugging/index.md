@@ -26,21 +26,21 @@ is on. Click the **Load Unpacked** button and select the broken extension direct
 extension is loaded, it should have three buttons: **Details**, **Remove** and **Errors** in red
 letters.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/NPUXnZrLSG6T6zTCmbxj.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/NPUXnZrLSG6T6zTCmbxj.png",
        alt="Image displaying error button on extension management page", height="220", width="412" %}
 
 Click the **Errors** button to view the error log. The extensions system has found an issue in the
 background script.
 
-`Uncaught TypeError: Cannot read property ‘addListener’ of undefined`
+`Uncaught TypeError: Cannot read property 'addListener' of undefined`
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/5UNQ4gp40qQZIwOLTzxA.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/5UNQ4gp40qQZIwOLTzxA.png",
        alt="Extensions Management Page displaying background script error", height="556", width="646" %}
 
 Additionally, the Chrome DevTools panel can be opened for the background script by selecting the
 blue link next to **Inspect views**.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/GvIXA3o7JvOxUg9BV12z.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/GvIXA3o7JvOxUg9BV12z.png",
        alt="DevTools displaying background script error", height="222", width="743" %}
 
 Return to the code.
@@ -76,15 +76,15 @@ view the new log.
 
 `Uncaught ReferenceError: tabs is not defined`
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/ygCnLz4Dst4mktOQhj4S.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/ygCnLz4Dst4mktOQhj4S.png",
        alt="Extensions Management Page displaying popup error", height="559", width="642" %}
 
 Popup errors can also be viewed by inspecting the popup.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/PTfS6FEsE6vkbtDVMcsM.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/PTfS6FEsE6vkbtDVMcsM.png",
        alt="DevTools displaying popup error", height="189", width="499" %}
 
-The error, `tabs is undefined`, says the extension doesn’t know where to inject the content script.
+The error, `tabs is undefined`, says the extension doesn't know where to inject the content script.
 This can be corrected by calling the [`tabs.query()`][4] method, then selecting the active tab.
 
 ```js/9-13
@@ -110,13 +110,13 @@ extension.
 
 ### Content script {: #debug_cs }
 
-Refresh the page, open the popup and click the green box. And... nope, the background still hasn’t
+Refresh the page, open the popup and click the green box. And... nope, the background still hasn't
 changed colors! Navigate back to the Extensions Management Page and... there is no **Errors**
 button. The likely culprit is the content script, which runs inside the web page.
 
 Open the DevTools panel of the web page the extension is trying to alter.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/q6cdFK0h7JEfaQKUMDg0.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/q6cdFK0h7JEfaQKUMDg0.png",
        alt="Extension error displayed in web page console", height="292", width="515" %}
 
 Only runtime errors, `console.warning` and `console.error` will be recorded on the Extensions
@@ -125,13 +125,13 @@ Management Page.
 To use DevTools from within the content script, click the dropdown arrow next to **top** and select
 the extension.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/uo8osbvVkG5HcJS00bAR.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/uo8osbvVkG5HcJS00bAR.png",
        alt="Uncaught ReferenceError: tabs is not defined", height="129", width="521" %}
 
 The error says `color` is not defined. The extension must not be passing the variable correctly.
 Correct the injected script to pass the color variable into the code.
 
-```
+```js
   {code: 'document.body.style.backgroundColor = "' + color + '";'});
 ```
 
@@ -146,7 +146,7 @@ The popup will often make all of the required network requests before even the s
 developers can open DevTools. To view these requests, refresh from inside the network panel. It will
 reload the popup without closing the DevTools panel.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/x8knWvTA11f4j1wVoNY8.gif",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/x8knWvTA11f4j1wVoNY8.gif",
        alt="Refresh inside the network panel to view popup network requests", height="520", width="566" %}
 
 ## Declare permissions {: #declare_permission }
@@ -197,15 +197,15 @@ about [Chrome Devtools][14] by reading the documentation.
 
 [1]: https://developers.google.com/web/tools/chrome-devtools/
 [2]: https://storage.googleapis.com/chrome-gcs-uploader.appspot.com/file/WlD8wC6g8khYWPJUsQceQkhXSlv1/KZdyzIighjOsDUPaibEn.zip "broken_background_color.zip"
-[3]: /docs/extensions/runtime#event-onInstalled
-[4]: /docs/extensions/tabs#method-query
+[3]: /docs/extensions/reference/runtime#event-onInstalled
+[4]: /docs/extensions/reference/tabs#method-query
 [5]: /docs/extensions/mv2/override
 [6]: /docs/extensions/mv2/options#full_page
-[7]: /docs/extensions/cookies
-[8]: /docs/extensions/storage
+[7]: /docs/extensions/reference/cookies
+[8]: /docs/extensions/reference/storage
 [9]: /docs/extensions/mv2/xhr
 [10]: /docs/extensions/mv2/permission_warnings
-[11]: /docs/extensions/api_index
-[12]: /docs/extensions/mv2/tabs
+[11]: /docs/extensions/reference
+[12]: /docs/extensions/reference/tabs
 [13]: http://www.youtube.com/watch?v=IP0nMv_NI1s&feature=PlayList&p=CA101D6A85FE9D4B&index=5
 [14]: https://developers.google.com/web/tools/chrome-devtools/

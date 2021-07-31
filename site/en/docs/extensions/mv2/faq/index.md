@@ -12,46 +12,7 @@ If you don't find an answer to your question here, try the [Chrome Web Store FAQ
 [\[google-chrome-extension\] tag on Stack Overflow][2], the [chromium-extensions group][3], or the
 [store help][4].
 
-#### General {: #general }
-
-- [What are Google Chrome Extensions?][5]
-- [How can I set up Chrome for extension development?][6]
-- [What technologies are used to write extensions for Chrome?][7]
-- [Are extensions fetched from the web every time the browser is loaded?][8]
-- [How do I determine which version of Chrome is deployed to which channel?][9]
-
-#### Capabilities {: #capabilities }
-
-- [Can extensions make cross-domain Ajax requests?][10]
-- [Can extensions use 3rd party web services?][11]
-- [Can extensions encode/decode JSON data?][12]
-- [Can extensions store data locally?][13]
-- [Can extensions use OAuth?][14]
-- [Can extensions create UI outside of the rendered web page?][15]
-- [Can extensions listen to clicks on Chrome tabs and navigation buttons?][16]
-- [Can two extensions communicate with each other?][17]
-- [Can extensions use Google Analytics?][18]
-- [Can extensions modify chrome:// URLs?][19]
-- [Can extensions open browser/page action popups without user interaction?][20]
-- [Can extensions keep popups open after the user clicks away from them?][21]
-- [Can extensions be notified when they are installed/uninstalled?][22]
-
-#### Development {: #development }
-
-- [How do I build a UI for my extension?][23]
-- [How much data can I store in localStorage?][24]
-- [How do I create an options menu for my application?][25]
-- [What debugging tools are available to extension developers?][26]
-- [Why do wildcard matches not work for top level domains (TLDs)?][27]
-- [Why does the management API not fire events when my extension is installed/uninstalled?][28]
-- [How can an extension determine whether it is running for the first time?][29]
-
-#### Features and bugs {: #features }
-
-- [I think I've found a bug! How do I make sure it gets fixed?][30]
-- [I have a feature request! How can I report it?][31]
-
-## General {: #general2 }
+## General {: #general }
 
 ### What are Google Chrome extensions? {: #faq-gen-01 }
 
@@ -91,7 +52,7 @@ with a web service or pull new content from the web.
 To determine which version of Chrome is currently available on each of the different platforms,
 visit [omahaproxy.appspot.com][34]. On that site you will see data in a format similar to:
 
-```
+```text
 cf,dev,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####
 cf,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####
 cf,stable,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####
@@ -350,20 +311,20 @@ The steps you should follow to ensure this are:
 [37]: http://dev.w3.org/html5/webstorage/
 [38]: http://dev.w3.org/html5/webdatabase/
 [39]: http://unitedheroes.net/OAuthSimple/js/OAuthSimple.js
-[40]: /docs/extensions/browserAction
-[41]: /docs/extensions/pageAction
+[40]: /docs/extensions/reference/browserAction
+[41]: /docs/extensions/reference/pageAction
 [42]: /docs/extensions/mv2/desktop_notifications
-[43]: /docs/extensions/api_index
+[43]: /docs/extensions/reference
 [44]: /docs/extensions/mv2/messaging#external
 [45]: http://www.google.com/analytics/
 [46]: /docs/extensions/mv2/tut_analytics
 [47]: /docs/extensions/mv2/override
-[48]: /docs/extensions/runtime#event-onInstalled
+[48]: /docs/extensions/reference/runtime#event-onInstalled
 [49]: #faq-dev-05
 [50]: /docs/extensions/mv2/options
 [51]: /docs/extensions/mv2/tut_debugging
-[52]: /docs/extensions/management
-[53]: /docs/extensions/runtime#event-onInstalled
+[52]: /docs/extensions/reference/management
+[53]: /docs/extensions/reference/runtime#event-onInstalled
 [54]: #faq-lifecycle-events
 [55]: http://crbug.com
 [56]:

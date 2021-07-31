@@ -1,9 +1,14 @@
 const cheerio = require('cheerio');
 const ISO6391 = require('iso-639-1');
-const {asides} = require('./asides');
 const {prettyUrls} = require('./pretty-urls');
 const {tables} = require('./tables');
+const {processInlineJs} = require('./process-inline-js');
 
+/**
+ * @param {string} content
+ * @param {string} outputPath
+ * @return {string}
+ */
 const domTransformer = (content, outputPath) => {
   // Make sure we're not interacting with something weird that has
   // permalink set to false or undefined.
@@ -12,7 +17,8 @@ const domTransformer = (content, outputPath) => {
   }
 
   // Turn the page into a cheerio object to make it queryable.
-  const $ = cheerio.load(content);
+  // This uses https://github.com/fb55/htmlparser2 instead of the default parse5.
+  const $ = cheerio.load(content, {_useHtmlParser2: true});
 
   // Grab the locale for the page. This is used by various transforms.
   const locale = $('html').attr('lang');
@@ -26,12 +32,13 @@ const domTransformer = (content, outputPath) => {
 
   // Pipe the page through transforms.
   // These transforms mutate the cheerio object.
-  asides($, locale);
   prettyUrls($, outputPath, locale);
   tables($);
+  processInlineJs($);
 
   // Return the final html.
   return $.html();
 };
 
-module.exports = {domTransformer};
+// async-transforms can only operate on the default export.
+module.exports = domTransformer;

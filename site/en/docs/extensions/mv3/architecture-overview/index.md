@@ -2,7 +2,7 @@
 layout: "layouts/doc-post.njk"
 title: "Architecture overview"
 date: 2012-09-18
-updated: 2018-06-07
+updated: 2021-05-12
 description: A high-level explanation of the software architecture of Chrome Extensions.
 ---
 
@@ -27,20 +27,21 @@ as the most important files and the capabilities the extension might use.
 ```json
 {
   "name": "My Extension",
+  "description": "A nice little demo extension.",
   "version": "2.1",
-  "description": "Gets information from Google.",
+  "manifest_version": 3,
   "icons": {
-    "128": "icon_16.png",
-    "128": "icon_32.png",
-    "128": "icon_48.png",
+    "16": "icon_16.png",
+    "32": "icon_32.png",
+    "48": "icon_48.png",
     "128": "icon_128.png"
   },
   "background": {
-    "persistent": false,
-    "scripts": ["background_script.js"]
+    "service_worker": "background.js"
   },
-  "permissions": ["https://*.google.com/", "activeTab"],
-  "browser_action": {
+  "permissions": ["activeTab"],
+  "host_permissions": ["*://*.example.com/*"],
+  "action": {
     "default_icon": "icon_16.png",
     "default_popup": "popup.html"
   }
@@ -51,16 +52,14 @@ Extensions must have an icon that sits in the browser toolbar. Toolbar icons all
 keep users aware of which extensions are installed. Most users will interact with an extension that
 uses a [popup][2] by clicking on the icon.
 
-This <a href="/extensions/samples#search:google%20mail%20checker">Google Mail Checker extension</a>
-uses a <a href="browserAction">browser action</a>:
+This Manifest V2 [Google Mail Checker extension][sample-gmail] uses a [browser action][4]:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/mG1Uyd3uzcP7sSyKXWkh.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/mG1Uyd3uzcP7sSyKXWkh.png",
        alt="A screenshot of the Google Mail Checker extension", height="79", width="90" %}
 
-This <a href="/extensions/samples#search:mappy">Mappy extension</a> uses a
-<a href="pageAction">page action</a> and <a href="#contentScripts">content script</a>:
+This Manifest V2 [Mappy extension][sample-mappy] uses a [page action][6] and [content script][7]:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/LrHTrkZVBN96DqNQjtyF.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/LrHTrkZVBN96DqNQjtyF.png",
        alt="A screenshot of the Mappy extension", height="103", width="90" %}
 
 ### Referring to files {: #relative-urls }
@@ -75,12 +74,12 @@ page.
 Additionally, each file can also be accessed using an absolute URL.
 
 ```text
-chrome-extension://<extensionID>/<pathToFile>
+chrome-extension://&lt;extensionID>/<pathToFile>
 ```
 
-In the absolute URL, the _<extensionID>_ is a unique identifier that the extension system generates
-for each extension. The IDs for all loaded extensions can be viewed by going to the URL
-**chrome://extensions**. The _<pathToFile>_ is the location of the file under the extension's top
+In the absolute URL, the _&lt;extensionID>_ is a unique identifier that the extension system
+generates for each extension. The IDs for all loaded extensions can be viewed by going to the URL
+**chrome://extensions**. The _&lt;pathToFile>_ is the location of the file under the extension's top
 folder; it matches the relative URL.
 
 While working on an unpacked extension the extension ID can change. Specifically, the ID of an
@@ -90,7 +89,7 @@ can use the [`chrome.runtime.getURL()`][8] method to avoid hardcoding the ID dur
 
 ## Architecture {: #arch }
 
-An extension’s architecture will depend on its functionality, but many robust extensions will
+An extension's architecture will depend on its functionality, but many robust extensions will
 include multiple components:
 
 - [Manifest][9]
@@ -119,9 +118,9 @@ present in the extension.
 
 An extension using a page action and a popup can use the [declarative content][23] API to set rules
 in the background script for when the popup is available to users. When the conditions are met, the
-background script communicates with the popup to make it’s icon clickable to users.
+background script communicates with the popup to make it's icon clickable to users.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/8oLwFaq0VFIQtw4mcA91.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/8oLwFaq0VFIQtw4mcA91.png",
        alt="A browser window containing a page action displaying a popup", height="316", width="325" %}
 
 ### Content scripts {: #contentScripts }
@@ -130,13 +129,13 @@ Extensions that read or write to web pages utilize a [content script][24]. The c
 contains JavaScript that executes in the contexts of a page that has been loaded into the browser.
 Content scripts read and modify the DOM of web pages the browser visits.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/CNDAVsTnJeSskIXVnSQV.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/CNDAVsTnJeSskIXVnSQV.png",
        alt="A browser window with a page action and a content script", height="316", width="388" %}
 
 Content scripts can communicate with their parent extension by exchanging [messages][25] and storing
 values using the [storage][26] API.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/466ftDp0EXB4E1XeaGh0.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/466ftDp0EXB4E1XeaGh0.png",
        alt="Shows a communication path between the content script and the parent extension", height="316", width="388" %}
 
 ### Options page {: #optionsPage }
@@ -160,8 +159,8 @@ to finish. If an extension needs to know the outcome of an asynchronous operatio
 callback function into the method. The callback is executed later, potentially much later, after the
 method returns.
 
-If the extension needed to navigate the user’s currently selected tab to a new URL, it would need to
-get the current tab’s ID and then update that tab’s address to the new URL.
+If the extension needed to navigate the user's currently selected tab to a new URL, it would need to
+get the current tab's ID and then update that tab's address to the new URL.
 
 If the [tabs.query][30] method were synchronous, it may look something like below.
 
@@ -194,7 +193,7 @@ someOtherFunction();
 In the above code, the lines are executed in the following order: 1, 4, 2. The callback function
 specified to `query()` is called and then executes line 2, but only after information about the
 currently selected tab is available. This happens sometime after `query()` returns. Although
-`update()` is asynchronous the code doesn’t use a callback parameter, since the extension doesn’t do
+`update()` is asynchronous the code doesn't use a callback parameter, since the extension doesn't do
 anything with the results of the update.
 
 ```js
@@ -253,45 +252,48 @@ following resources.
 - The [developer's guide][42] has dozens of additional links to pieces of documentation relevant to
   advanced extension creation.
 
-[1]: /docs/extensions/mv3/tabs
+[1]: /docs/extensions/mv3/manifest
 [2]: /docs/extensions/mv3/user_interface#popup
 [3]: /docs/extensions/mv3/samples#search:google%20mail%20checker
-[4]: /docs/extensions/browserAction
+[4]: /docs/extensions/reference/browserAction
 [5]: /docs/extensions/mv3/samples#search:mappy
-[6]: /docs/extensions/pageAction
-[7]: /docs/extensions/#contentScripts
-[8]: /docs/extensions/runtime#method-getURL
-[9]: /docs/extensions/mv3/tabs
+[6]: /docs/extensions/reference/pageAction
+[7]: #contentScripts
+[8]: /docs/extensions/reference/runtime#method-getURL
+[9]: /docs/extensions/mv3/manifest
 [10]: #background_script
 [11]: #pages
 [12]: #contentScripts
 [13]: #optionsPage
 [14]: /docs/extensions/mv3/background_pages
 [15]: /docs/extensions/mv3/user_interface
-[16]: /docs/extensions/browserAction
-[17]: /docs/extensions/pageAction
-[18]: /docs/extensions/contextMenus
+[16]: /docs/extensions/reference/browserAction
+[17]: /docs/extensions/reference/pageAction
+[18]: /docs/extensions/reference/contextMenus
 [19]: /docs/extensions/reference/omnibox
 [20]: /docs/extensions/reference/commands
 [21]: /docs/extensions/mv3/user_interface#popup
-[22]: /docs/extensions/tabs#method-create
-[23]: /docs/extensions/declarativeContent
+[22]: /docs/extensions/reference/tabs#method-create
+[23]: /docs/extensions/reference/declarativeContent
 [24]: /docs/extensions/mv3/content_scripts
 [25]: /docs/extensions/mv3/messaging
-[26]: /docs/extensions/storage
+[26]: /docs/extensions/reference/storage
 [27]: /docs/extensions/mv3/options
-[28]: /docs/extensions/api_index
-[29]: /docs/extensions/tabs#method-create
-[30]: /docs/extensions/tabs#method-query
-[31]: /docs/extensions/api_index
-[32]: /docs/extensions/extension
-[33]: /docs/extensions/storage
+[28]: /docs/extensions/reference
+[29]: /docs/extensions/reference/tabs#method-create
+[30]: /docs/extensions/reference/tabs#method-query
+[31]: /docs/extensions/reference
+[32]: /docs/extensions/reference/extension
+[33]: /docs/extensions/reference/storage
 [34]: /docs/extensions/mv3/messaging
-[35]: /docs/extensions/storage
+[35]: /docs/extensions/reference/storage
 [36]: https://html.spec.whatwg.org/multipage/webstorage.html
-[37]: /docs/extensions/tabs#type-Tab
-[38]: /docs/extensions/windows#type-Window
+[37]: /docs/extensions/reference/tabs#type-Tab
+[38]: /docs/extensions/reference/windows#type-Window
 [39]: /docs/extensions/mv3/getstarted
 [40]: /docs/extensions/mv3/tut_debugging
-[41]: /docs/extensions/api_index
+[41]: /docs/extensions/reference
 [42]: /docs/extensions/mv3/devguide
+
+[sample-gmail]: https://github.com/GoogleChrome/chrome-extensions-samples/tree/main/mv2-archive/extensions/gmail
+[sample-mappy]: https://github.com/GoogleChrome/chrome-extensions-samples/tree/main/mv2-archive/extensions/mappy

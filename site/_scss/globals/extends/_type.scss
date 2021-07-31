@@ -7,6 +7,7 @@
   list-style: none;
   margin-left: $list-margin;
   padding: 0;
+  position: relative;
   @include media-query('lg') {
     max-width: calc(100% - #{$list-margin * 2});
   }
@@ -246,6 +247,11 @@
     + .type--dt {
       margin-top: 0.5em;
     }
+  }
+
+  &--code {
+    @include apply-utility('font', 'mono');
+    @include font-setup(15px, 26px, false, false);
   }
 
   &--full-bleed {

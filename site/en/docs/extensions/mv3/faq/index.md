@@ -10,46 +10,7 @@ If you don't find an answer to your question here, try the [Chrome Web Store FAQ
 [\[google-chrome-extension\] tag on Stack Overflow][2], the [chromium-extensions group][3], or the
 [store help][4].
 
-#### General {: #general }
-
-- [What are Google Chrome Extensions?][5]
-- [How can I set up Chrome for extension development?][6]
-- [What technologies are used to write extensions for Chrome?][7]
-- [Are extensions fetched from the web every time the browser is loaded?][8]
-- [How do I determine which version of Chrome is deployed to which channel?][9]
-
-#### Capabilities {: #capabilities }
-
-- [Can extensions make cross-domain Ajax requests?][10]
-- [Can extensions use 3rd party web services?][11]
-- [Can extensions encode/decode JSON data?][12]
-- [Can extensions store data locally?][13]
-- [Can extensions use OAuth?][14]
-- [Can extensions create UI outside of the rendered web page?][15]
-- [Can extensions listen to clicks on Chrome tabs and navigation buttons?][16]
-- [Can two extensions communicate with each other?][17]
-- [Can extensions use Google Analytics?][18]
-- [Can extensions modify chrome:// URLs?][19]
-- [Can extensions open browser/page action popups without user interaction?][20]
-- [Can extensions keep popups open after the user clicks away from them?][21]
-- [Can extensions be notified when they are installed/uninstalled?][22]
-
-#### Development {: #development }
-
-- [How do I build a UI for my extension?][23]
-- [How much data can I store in localStorage?][24]
-- [How do I create an options menu for my application?][25]
-- [What debugging tools are available to extension developers?][26]
-- [Why do wildcard matches not work for top level domains (TLDs)?][27]
-- [Why does the management API not fire events when my extension is installed/uninstalled?][28]
-- [How can an extension determine whether it is running for the first time?][29]
-
-#### Features and bugs {: #features }
-
-- [I think I've found a bug! How do I make sure it gets fixed?][30]
-- [I have a feature request! How can I report it?][31]
-
-## General {: #general2 }
+## General {: #general }
 
 ### What are Google Chrome extensions? {: #faq-gen-01 }
 
@@ -89,7 +50,7 @@ with a web service or pull new content from the web.
 To determine which version of Chrome is currently available on each of the different platforms,
 visit [omahaproxy.appspot.com][34]. On that site you will see data in a format similar to:
 
-```
+```text
 cf,dev,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####
 cf,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####
 cf,stable,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####
@@ -209,7 +170,7 @@ can add [some limited UI elements to Chrome itself.][49]
 
 Extensions can store up to 5MB of data in localStorage.
 
-### How do I create an options menu for my application? {: #faq-dev-10 }
+### How do I create an options menu for my extension? {: #faq-dev-10 }
 
 You can let users set options for your extension by creating an [options page][50], which is a
 simple HTML page that will be loaded when a user clicks the "options" button for your extension.
@@ -262,8 +223,8 @@ The steps you should follow to ensure this are:
     this way, which is a good indicator that the bug is in their own code.
 2.  Search the issue tracker at [http://crbug.com][55] to see whether someone has reported a similar
     issue. Most issues related to extensions are filed under **component=Platform>Extensions**, so
-    to look for an extension bug related to the chrome.tabs.executeScript function (for example),
-    search for "`component=Platform>Extensions Type=Bug chrome.tabs.executeScript`", which will give
+    to look for an extension bug related to the chrome.scripting.executeScript function (for example),
+    search for "`component=Platform>Extensions Type=Bug chrome.scripting.executeScript`", which will give
     you [this list of results][56].
 3.  If you find a bug that describes your issue, click the star icon to be notified when the bug
     receives an update. _Do not respond to the bug to say "me too" or ask "when will this be
@@ -366,7 +327,7 @@ The steps you should follow to ensure this are:
 [54]: #faq-lifecycle-events
 [55]: http://crbug.com
 [56]:
-  https://bugs.chromium.org/p/chromium/issues/list?can=2&q=component%3DPlatform>Extensions+Type%3DBug+chrome.tabs.executeScript
+  https://bugs.chromium.org/p/chromium/issues/list?can=2&q=component%3DPlatform>Extensions+Type%3DBug+chrome.scripting.executeScript
 [57]: http://crbug.com/new
 [58]: http://groups.google.com/a/chromium.org/group/chromium-extensions/topics
 [59]: http://crbug.com

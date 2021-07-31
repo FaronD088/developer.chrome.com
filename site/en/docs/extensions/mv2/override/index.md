@@ -33,10 +33,10 @@ Overview for more details on how you should treat incognito windows.
 
 The following screenshots show the default New Tab page and then a custom New Tab page.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/LbjiI23vPdf5z8jjttwN.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/LbjiI23vPdf5z8jjttwN.png",
        alt="The default new tab page", height="173", width="200" %}
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/OvYbqxEERBMXwIQsxkm7.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/OvYbqxEERBMXwIQsxkm7.png",
        alt="A custom new tab page", height="173", width="200" %}
 
 ## Manifest {: #manifest }
@@ -74,8 +74,8 @@ For an effective override page, follow these guidelines:
 - **Don't rely on the page having the keyboard focus.**
   The address bar always gets the focus first when the user creates a new tab.
 - **Don't try to emulate the default New Tab page.**
-  The APIs necessary to create a slightly modified version of the default New Tab page — with top
-  pages, recently closed pages, tips, a theme background image, and so on — don't exist yet. Until
+  The APIs necessary to create a slightly modified version of the default New Tab page—with top
+  pages, recently closed pages, tips, a theme background image, and so on—don't exist yet. Until
   they do, you're better off trying to make something completely different.
 
 ## Examples {: #examples }

@@ -6,6 +6,20 @@ home_search:
   en: 'Home and search'
   es: 'Home and search'
 
+compare_better:
+  en: 'Do'
+  es: 'Si'
+
+compare_worse:
+  en: "Don't"
+  es: 'No'
+
+compare_helpful:
+  en: 'Helpful'
+
+compare_unhelpful:
+  en: 'Unhelpful'
+
 menu:
   en: 'menu'
   es: 'menu'
@@ -50,7 +64,7 @@ gotchas:
   en: 'Gotchas'
   es: 'Gotchas'
 
-key:
+key-term:
   en: 'Key Term'
   es: 'Término Clave'
 
@@ -71,8 +85,8 @@ follow:
   es: 'Seguir'
 
 toc:
-  en: 'Table of Contents'
-  es: 'Tabla de Contenido'
+  en: 'Table of contents'
+  es: 'Tabla de contenido'
 
 tags:
   en: 'Tags'
@@ -87,8 +101,8 @@ skip_to_content:
   en: 'Skip to content'
   es: 'Saltar al contenido'
 
-previous:
-  en: 'Previous'
+newer_posts:
+  en: 'Newer posts'
 
-next:
-  en: 'Next'
+older_posts:
+  en: 'Older posts'

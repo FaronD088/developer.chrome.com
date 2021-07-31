@@ -6,24 +6,24 @@ updated: 2015-09-25
 description: How to build Chrome Apps that work offline.
 ---
 
-!!!.aside.aside--caution
+{% Aside 'caution' %}
 
 **Important:** Chrome will be removing support for Chrome Apps on all platforms. Chrome browser and
 the Chrome Web Store will continue to support extensions. [**Read the announcement**][1] and learn
 more about [**migrating your app**][2].
 
-!!!
+{% endAside %}
 
 Because internet connections can be flakey or non-existent, you need to consider _offline first_:
 write your app as if it has no internet connection. Once your app works offline, add whatever
-network functionality you need for your app to do more when it’s online. Read on for tips on
+network functionality you need for your app to do more when it's online. Read on for tips on
 implementing your offline-enabled app.
 
 ## Overview {: #overview }
 
 Chrome Apps get the following for free:
 
-- Your app’s files—all of its JavaScript, CSS, and fonts, plus other resources it needs (such as
+- Your app's files—all of its JavaScript, CSS, and fonts, plus other resources it needs (such as
   images)—are **already downloaded**.
 - Your app can **save and optionally sync** small amounts of data using the [Chrome Storage API][3].
 - Your app can **detect changes in connectivity** by listening for [online and offline events][4].
@@ -36,7 +36,7 @@ Use local data whenever possible.
 : When using resources from the internet, use `XMLHttpRequest` to get it, and then save the data
   locally. You can use the Chrome Storage API, IndexedDB, or Filesystem API to save data locally.
 
-Separate your app’s UI from its data.
+Separate your app's UI from its data.
 
 : Separating the UI and data not only improves your app's design and eases the task of enabling
   offline usage, but also lets you provide other views of the user's data. An MVC framework can help
@@ -64,11 +64,11 @@ Chrome Apps are limited in where they can place their resources:
   data with a blob URL or (better yet) save and then load the data using the [Filesystem
   API][7].
   
-  !!!.aside.aside--note
+  {% Aside %}
 
   **Note:** Styles can be inline or in separate `.css` files.
 
-  !!!
+  {% endAside %}
 
 You can, however, load large media resources such as videos and sounds from external sites. One
 reason for this exception to the rule is that the `<video>` and `<audio>` elements have good fallback
@@ -81,7 +81,7 @@ has no direct access to the Chrome app APIs (see [Embed external web pages][8]).
 Some of the restrictions on Chrome Apps are enforced by the [Content Security Policy (CSP)][9] which
 is always the following and cannot be changed for Chrome Apps:
 
-```
+```text
 default-src 'self';
 connect-src * data: blob: filesystem:;
 style-src 'self' blob: data: filesystem: 'unsafe-inline';
@@ -112,13 +112,13 @@ The following table shows your options for saving data locally (see also [Manage
 
 <table class="simple"><tbody><tr><th>API</th><th>Best use</th><th>Notes</th></tr><tr><td>Chrome Storage API</td><td>Small amounts of string data</td><td>Great for settings and state. Easy to sync remotely (but you don't have to). Not good for larger amounts of data, due to quotas.</td></tr><tr><td>IndexedDB API</td><td>Structured data</td><td>Enables fast searches on data. Use with the <a href="declare_permissions">unlimitedStorage permission</a>.</td></tr><tr><td>Filesystem API</td><td>Anything else</td><td>Provides a sandboxed area where you can store files. Use with the <a href="declare_permissions">unlimitedStorage permission</a>.</td></tr></tbody></table>
 
-!!!.aside.aside--note
+{% Aside %}
 
 **Note:** Packaged apps cannot use Web SQL Database or localStorage. The WebSQL specification has
 been deprecated for awhile now, and localStorage handles data synchronously (which means it can be
 slow). The Storage API handles data asynchronously.
 
-!!!
+{% endAside %}
 
 ## Saving data remotely {: #saving-remotely }
 
@@ -159,8 +159,8 @@ Make sure your app works well under the following circumstances:
 Also make sure that the app saves **no sensitive user data** (such as passwords) on the user's
 machine.
 
-[1]: https://blog.chromium.org/2020/01/moving-forward-from-chrome-apps.html
-[2]: https://developer.chrome.com/apps/migration
+[1]: https://blog.chromium.org/2020/08/changes-to-chrome-app-support-timeline.html
+[2]: /apps/migration
 [3]: storage
 [4]: https://developer.mozilla.org/en/Online_and_offline_events
 [5]: #testing

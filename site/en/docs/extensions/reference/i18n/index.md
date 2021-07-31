@@ -26,12 +26,12 @@ English strings):
 
 ![In the manifest.json file, "Hello World" has been changed to "__MSG_extName__", and a new "default_locale" item has the value "en". In the JavaScript file, "Hello World" has been changed to chrome.i18n.getMessage("extName"). A new file named _locales/en/messages.json defines "extName".](i18n-after-1.gif)
 
-!!!.aside.aside--note
+{% Aside %}
 
 **Important:** If an extension has a `_locales` directory, the [manifest][2] **must** define
 "default_locale".
 
-!!!
+{% endAside %}
 
 Some notes about internationalizing:
 
@@ -78,7 +78,7 @@ shows the previous extension with a new Spanish translation.
 
 ![This looks the same as the previous figure, but with a new file at _locales/es/messages.json that contains a Spanish translation of the messages.](i18n-after-2.gif)
 
-## Predefined messages
+## Predefined messages {: #overview-predefined }
 
 The internationalization system provides a few predefined messages to help you localize. These
 include `@@ui_locale`, so you can detect the current UI locale, and a few `@@bidi_...` messages that
@@ -188,7 +188,7 @@ To create and use a shortcut that launches Google Chrome with a particular local
 3.  Change the shortcut's properties so that the Target field specifies the `--lang` and
     `--user-data-dir` flags. The target should look something like this:
 
-    ```
+    ```text
     path_to_chrome.exe --lang=locale --user-data-dir=c:\locale_profile_dir
     ```
 
@@ -197,28 +197,28 @@ To create and use a shortcut that launches Google Chrome with a particular local
 For example, to create a shortcut that launches Google Chrome in Spanish (`es`), you might create a
 shortcut named `chrome-es` that has the following target:
 
-```
+```text
 path_to_chrome.exe --lang=es --user-data-dir=c:\chrome-profile-es
 ```
 
 You can create as many shortcuts as you like, making it easy to test in multiple languages. For
 example:
 
-```
+```text
 path_to_chrome.exe --lang=en --user-data-dir=c:\chrome-profile-en
 path_to_chrome.exe --lang=en_GB --user-data-dir=c:\chrome-profile-en_GB
 path_to_chrome.exe --lang=ko --user-data-dir=c:\chrome-profile-ko
 ```
 
-!!!.aside.aside--note
+{% Aside %}
 
 **Note:** Specifying `--user-data-dir` is optional but handy. Having one data directory per locale
 lets you run the browser in several languages at the same time. A disadvantage is that because the
-locales' data isn't shared, you have to install your extension multiple times — once per locale,
+locales' data isn't shared, you have to install your extension multiple times—once per locale,
 which can be challenging when you don't speak the language. For more information, see [Creating and
 Using Profiles][13].
 
-!!!
+{% endAside %}
 
 ##### Using the UI
 
@@ -246,7 +246,7 @@ To change the locale on Mac, you use the system preferences.
 To change the locale on Linux, first quit Google Chrome. Then, all in one line, set the LANGUAGE
 environment variable and launch Google Chrome. For example:
 
-```
+```text
 LANGUAGE=es ./chrome
 ```
 
@@ -341,7 +341,7 @@ For more details on calling `detectLanguage(inputText)`, see the [API reference]
 
 [1]: /docs/extensions/mv2/i18n-messages
 [2]: /docs/extensions/mv2/tabs
-[3]: #overview-locales
+[3]: #supported-locales
 [4]: #examples-getMessage
 [5]: #overview-predefined
 [6]: /docs/extensions/mv2/i18n-messages
@@ -352,10 +352,8 @@ For more details on calling `detectLanguage(inputText)`, see the [API reference]
 [11]: #testing-linux
 [12]: #testing-chromeos
 [13]: https://www.chromium.org/developers/creating-and-using-profiles
-[14]:
-  https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/docs/examples/api/i18n/
-[15]:
-  https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/docs/examples/extensions/news/
+[14]: https://github.com/GoogleChrome/chrome-extensions-samples/tree/master/mv2-archive/api/i18n/
+[15]: https://github.com/GoogleChrome/chrome-extensions-samples/tree/master/mv2-archive/extensions/news/
 [16]: /docs/extensions/mv2/samples
 [17]: /docs/extensions/mv2/i18n-messages
 [18]: #method-getMessage

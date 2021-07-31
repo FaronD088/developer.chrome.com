@@ -23,6 +23,7 @@ Pay special attention to the following APIs, which we expect to finalize soon: *
     channels) or the [Dev channel][4]. Although the experimental APIs might work in other versions,
     we need your feedback on the latest incarnation of the APIs, which you can find in Canary and on
     the Dev channel.
+
 2.  Specify the "experimental" [permission][5] in your manifest, like this:
 
     ```json/1
@@ -40,9 +41,10 @@ Pay special attention to the following APIs, which we expect to finalize soon: *
       On Windows, you can do this by modifying the properties of the shortcut that you use to launch
       Google Chrome. For example:
 
-      ```
+      ```text
       path_to_chrome.exe --enable-experimental-extension-apis
       ```
+
 4.  [Give us feedback!][6] Your comments and suggestions help us improve the APIs and decide which
     ones should move from experimental to supported.
 
@@ -56,5 +58,5 @@ For information on the standard APIs, see [chrome.\* APIs][7] and [Other APIs][8
 [4]: http://www.chromium.org/getting-involved/dev-channel
 [5]: /docs/extensions/mv2/declare_permissions
 [6]: http://groups.google.com/a/chromium.org/group/chromium-extensions/topics
-[7]: /docs/extensions/api_index
+[7]: /docs/extensions/reference
 [8]: /docs/extensions/api_other

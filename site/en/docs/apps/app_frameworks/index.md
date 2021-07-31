@@ -6,19 +6,19 @@ updated: 2014-05-21
 description: An overview of the model view controller software architecture model.
 ---
 
-!!!.aside.aside--caution
+{% Aside 'caution' %}
 
 **Important:** Chrome will be removing support for Chrome Apps on all platforms. Chrome browser and
 the Chrome Web Store will continue to support extensions. [**Read the announcement**][1] and learn
 more about [**migrating your app**][2].
 
-!!!
+{% endAside %}
 
 As modern browsers become more powerful with rich features, building full-blown web applications in
 JavaScript is not only feasible, but increasingly popular. Based on [trends][3] on [HTTP
 Archive][4], deployed JavaScript code size has grown 45% over the course of the year.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/JYbQCeKcbI0rbDtXUGKi.png", alt="JS transfer size and JS requests", height="292", width="568" %}
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/JYbQCeKcbI0rbDtXUGKi.png", alt="JS transfer size and JS requests", height="292", width="568" %}
 
 With JavaScript's popularity climbing, our client-side applications are much more complex than
 before. Application development requires collaboration from multiple developers. Writing
@@ -26,8 +26,8 @@ before. Application development requires collaboration from multiple developers.
 rich client-side features, is no exception.
 
 Design patterns are important to write maintainable and reusable code. A pattern is a reusable
-solution that can be applied to commonly occurring problems in software design — in our case —
-writing Chrome Apps. We recommend that developers decouple the app into a series of independent
+solution that can be applied to commonly occurring problems in software design—in our
+case—writing Chrome Apps. We recommend that developers decouple the app into a series of independent
 components following the MVC pattern.
 
 In the last few years, a series of JavaScript MVC frameworks have been developed, such as
@@ -37,24 +37,24 @@ encouraging developers to write more structured JavaScript code.
 
 ## MVC pattern overview {: #mvc }
 
-MVC offers architectural benefits over standard JavaScript — it helps you write better organized,
+MVC offers architectural benefits over standard JavaScript—it helps you write better organized,
 and therefore more maintainable code. This pattern has been used and extensively tested over
 multiple languages and generations of programmers.
 
 MVC is composed of three components:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/BHGcFQr06iG3kquyozom.png", alt="model-view-controller", height="303", width="466" %}
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/BHGcFQr06iG3kquyozom.png", alt="model-view-controller", height="303", width="466" %}
 
 ### Model {: #model }
 
-Model is where the application’s data objects are stored. The model doesn’t know anything about
+Model is where the application's data objects are stored. The model doesn't know anything about
 views and controllers. When a model changes, typically it will notify its observers that a change
 has occurred.
 
-To understand this further, let’s use the Todo list app, a simple, one page web app that tracks your
+To understand this further, let's use the Todo list app, a simple, one page web app that tracks your
 task list.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/7WQXOcG3PNRhnsjnsvjx.png", alt="model-view-controller", height="366", width="444" %}
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/7WQXOcG3PNRhnsjnsvjx.png", alt="model-view-controller", height="366", width="444" %}
 
 The model here represents attributes associated with each todo item such as description and status.
 When a new todo item is created, it is stored in an instance of the model.
@@ -66,7 +66,7 @@ HTML, CSS, JavaScript and often templates. This part of your Chrome App has acce
 
 For example, in the above todo list web app, you can create a view that nicely presents the list of
 todo items to your users. Users can also enter a new todo item through some input format; however,
-the view doesn’t know how to update the model because that’s the controller’s job.
+the view doesn't know how to update the model because that's the controller's job.
 
 ### Controller {: #controller }
 
@@ -119,7 +119,7 @@ functions such as creating, querying and filtering the model instances contained
 An adapter, or a proxy, receives the requests from a store and translates them into appropriate
 actions to take against your persistent data layer (such as JSON API). This is interesting in the
 modern web app design because you often interact with more than one persistent data layer such as a
-remote server and browser’s local storage. Chrome Apps provides both [Chrome Storage API][15] and
+remote server and browser's local storage. Chrome Apps provides both [Chrome Storage API][15] and
 [HTML 5 fileSystem API][16] for client side storage.
 
 Pros:
@@ -128,7 +128,7 @@ Pros:
 
 Cons:
 
-- Hard to test since the persistence layer is ‘baked’ into the object hierarchy.
+- Hard to test since the persistence layer is 'baked' into the object hierarchy.
 - Having different objects use different persistent stores is difficult (for example, FileSystem
   APIs vs indexedDB vs server–side).
 - Reusing Model in other applications may create conflicts, such as sharing a single Customer class
@@ -153,22 +153,22 @@ Cons:
 ### AppController does persistence {: #app_controller }
 
 In some patterns, there is a supervising controller responsible for navigating between one MVC and
-another. The AppController decides, for example, that a ‘Back’ button moves the client from an
+another. The AppController decides, for example, that a 'Back' button moves the client from an
 editing screen (which contains MVC widgets/formats), to a settings screen.
 
-In the AppController pattern, the AppController responds to events and changes the app’s current
+In the AppController pattern, the AppController responds to events and changes the app's current
 screen by issuing a call to the datastore to load any models needed and constructing all of the
 matching views and controllers for that screen.
 
 Pros:
 
 - Moves persistence layer even higher up the stack where it can be easily changed.
-- Doesn’t pollute lower level controllers like a DatePickerController with the need to know about
+- Doesn't pollute lower level controllers like a DatePickerController with the need to know about
   persistence.
 
 Cons:
 
-- Each ‘Page/Screen’ of the app now requires a lot of boilerplate to write or update: Model, View,
+- Each 'Page/Screen' of the app now requires a lot of boilerplate to write or update: Model, View,
   Controller, AppController.
 
 ### Recommended MVC frameworks {: #recommended }
@@ -194,8 +194,8 @@ frameworks for writing secure and scalable Chrome Apps:
 - [JavaScript Patterns][30] (By Stoyan Stefonov)
 - [Maintainable JavaScript][31] (By Nicolas Z. Zakas)
 
-[1]: https://blog.chromium.org/2020/01/moving-forward-from-chrome-apps.html
-[2]: https://developer.chrome.com/apps/migration
+[1]: https://blog.chromium.org/2020/08/changes-to-chrome-app-support-timeline.html
+[2]: /apps/migration
 [3]: http://httparchive.org/trends.php?s=intersection&minlabel=Jan+20+2011&maxlabel=Jan+15+2012
 [4]: http://httparchive.org/
 [5]: http://backbonejs.org/

@@ -22,20 +22,20 @@ any developer can take to make an extension as accessible as possible.
 
 ## Integrate accessible UI controls {: #controls }
 
-If users can’t access the user interface controls, they are unable to use an extension. The easiest
+If users can't access the user interface controls, they are unable to use an extension. The easiest
 way to create an accessible UI is to use a standard HTML control.
 
-!!!.aside
+{% Aside %}
 If an extension requires a custom control, it is much easier to make a custom control
 accessible from the beginning than to go back an add accessibility support later.
-!!!
+{% endAside %}
 
 ### Standard controls {: #htmlcontrols }
 
 Whenever possible, use [standard HTML UI controls][2]. Standard HTML controls are keyboard
 accessible, scale easily and are generally understood by screen readers.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/GzBvxe7wf61STDT30M2C.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/GzBvxe7wf61STDT30M2C.png",
        alt="Screenshots and code for button, checkbox, radio, text, select/option, and link", height="350", width="550" %}
 
 ### WAI-ARIA in custom controls {: #aria }
@@ -111,16 +111,16 @@ Make sure it's easy to see which parts of the interface have keyboard focus. Usu
 moves around the interface, however, if CSS is used too heavily the outline might be suppressed or
 the contrast reduced.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/KLh65zbJuxjLzdmYxFrP.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/KLh65zbJuxjLzdmYxFrP.png",
        alt="A focus outline on a Search button", height="75", width="200" %}
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/nrhQ8wybIh28GxRFfmSl.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/nrhQ8wybIh28GxRFfmSl.png",
        alt="A focus outline on one of a series of links", height="40", width="400" %}
 
 ### Shortcuts {: #shortcuts }
 
 While the most common keyboard navigation strategy involves using the Tab key to rotate focus
-through an extension’s interface, it is not always the easiest or most efficient option.
+through an extension's interface, it is not always the easiest or most efficient option.
 
 A simple JavaScript keyboard handler could look like the following. Note how the WAI-ARIA property
 `aria-activedescendant` is updated in response to user input to reflect the current active toolbar
@@ -179,7 +179,7 @@ familiar, as they reflect good practices for all web content.
 
 ### Text {: #text }
 
-Font choices and text size impact how readable an extension’s content is. Users with sight issues
+Font choices and text size impact how readable an extension's content is. Users with sight issues
 may need to increase an extensions text size. If using keyboard shortcuts, make sure they do not
 interfere with the zoom shortcuts built into Chrome.
 
@@ -198,7 +198,7 @@ a [contrast checking tool][13] to test if the background and foreground colors p
 appropriate contrast.
 
 When evaluating contrast, verify that every part of the extension that relies on graphics to convey
-information is clearly visible. For specific images, tools such as [Coblis — Color Blindness
+information is clearly visible. For specific images, tools such as [Coblis—Color Blindness
 Simulator][14] can be used to see what an image looks like in various forms of color deficiency.
 
 Consider offering different color themes, or giving the user the ability to customize the color

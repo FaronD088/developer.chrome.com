@@ -6,7 +6,7 @@ updated: 2020-11-19
 description: Frequently asked questions about Chrome Web Store's user data policy.
 ---
 
-<div class="aside aside--caution"><b>Important:</b> Chrome will be removing support for Chrome Apps on Windows, Mac, and Linux. Chrome OS will continue to support Chrome Apps. Additionally, Chrome and the Web Store will continue to support extensions on all platforms. <a href="http://blog.chromium.org/2016/08/from-chrome-apps-to-web.html">Read the announcement</a> and learn more about <a href="https://developer.chrome.com/apps/migration">migrating your app</a>.</div>
+<div class="aside aside--caution"><b>Important:</b> Chrome will be removing support for Chrome Apps on Windows, Mac, and Linux. Chrome OS will continue to support Chrome Apps. Additionally, Chrome and the Web Store will continue to support extensions on all platforms. <a href="http://blog.chromium.org/2016/08/from-chrome-apps-to-web.html">Read the announcement</a> and learn more about <a href="/apps/migration">migrating your app</a>.</div>
 
 <div class="aside aside--caution"><b>Important:</b> The new requirements for Minimum Permission and updated User Data policy will be enforced starting <strong>10/15/2019</strong>.</div>
 
@@ -277,9 +277,9 @@ Developers have access to the following information:
 ### 1\. What disclosures do I need to display on my project home page?
 
 All extensions that request personal or sensitive user data must show a [][12]Limited Use disclosure
-on your project’s homepage or on a page one click away from the homepage; for example, in your
+on your project's homepage or on a page one click away from the homepage; for example, in your
 privacy policy. This Limited Use disclosure should be written by you, the developer, and should
-clearly describe the app’s compliance with the Chrome Web Store User Data Policy, including the
+clearly describe the app's compliance with the Chrome Web Store User Data Policy, including the
 Limited Use requirements.
 
 ### 2\. What are the limited use requirements?
@@ -293,13 +293,13 @@ The limited use requirements have four elements:
 
 See the following entries for the policy limitations in each of these areas.
 
-### 3\. What is the “allowed use” element of the limited use requirements?
+### 3\. What is the "allowed use" element of the limited use requirements?
 
 Developers are only allowed to use permissions, which collect personal or sensitive user data, to
 provide or improve your single purpose or user-facing features. It should be clear to your users why
 and how you use the personal or sensitive user data they've chosen to share with you.
 
-### 4\. What is the “allowed transfer” element of the limited use requirements?
+### 4\. What is the "allowed transfer" element of the limited use requirements?
 
 Developers are only allowed to transfer user data to others if that transfer is (a) necessary to
 provide or improve the single purpose of the extension, (b) to comply with applicable laws, (c) if
@@ -307,12 +307,12 @@ necessary for security purposes (for example, investigating abuse); or, (d) as p
 acquisition or sale of assets of the developer. All other transfers of personal or sensitive user
 data are completely prohibited.
 
-### 5\. What is the “prohibited advertising” element of the limited use requirements?
+### 5\. What is the "prohibited advertising" element of the limited use requirements?
 
 Developers are never allowed to use or transfer user data to serve users personalized, re-targeted,
 or interest-based advertisements.
 
-### 6\. What is the “prohibited human interaction” element of the limited use requirements?
+### 6\. What is the "prohibited human interaction" element of the limited use requirements?
 
 Developers cannot allow humans to read user data. For example, a developer with access to a user's
 data is not allowed to have one of its employees read through a user's emails. There are four
@@ -334,30 +334,30 @@ information about their data collection and data usage in a simple and standardi
 Every item will need to provide these data collection disclosures and limited use certification in
 order to be updated or published.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/0XaRnPCCq1fB8eLzwu8w.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/0XaRnPCCq1fB8eLzwu8w.png",
        alt="Screenshot of the data collection privacy field set", height="599", width="800" %}
 
 ### 2\. What happens if I don't fill out the limited use form?
 
 There is a section on the developer dashboard that you need to fill out to communicate how your
-extension uses personal or sensitive user data. If you don’t complete this section, then your
+extension uses personal or sensitive user data. If you don't complete this section, then your
 extension will be displayed to users as not having provided this information.
 
 Starting March 2021, the Chrome Web Store team will reach out to developers with a warning to
 complete the disclosure requirement. Inaction after 30 days of the warning will result in the
 suspension of affected items and the deactivation of the existing user-base.
 
-### 3\. What happens if there are inconsistencies between my item’s privacy policy, the disclosures provided through the developer dashboard, and the behavior of my item?
+### 3\. What happens if there are inconsistencies between my item's privacy policy, the disclosures provided through the developer dashboard, and the behavior of my item?
 
 We take our users' privacy very seriously and so should every publisher of the Chrome Web Store. As
-a publisher it is your responsibility to be transparent when handling Chrome users’ data. Any
+a publisher it is your responsibility to be transparent when handling Chrome users' data. Any
 discrepancies between the developer dashboard disclosures, your privacy policy, and the behavior of
 your item would be a violation of the [Chrome Web Store developer program policies][13]. This can
 result in the suspension of all the items owned by the publisher, deactivation of the existing
 user-base, and ban of the entire publisher entity (including related accounts).
 
 [1]: http://blog.chromium.org/2016/08/from-chrome-apps-to-web.html
-[2]: https://developer.chrome.com/apps/migration
+[2]: /apps/migration
 [3]: /docs/extensions/branding
 [4]: /docs/extensions/rating
 [5]: /docs/extensions/program_policies

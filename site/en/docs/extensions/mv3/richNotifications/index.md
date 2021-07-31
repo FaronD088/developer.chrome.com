@@ -11,7 +11,7 @@ description: How to show notifications to your Chrome Extension users.
 The [rich notifications API][2] lets you create notifications using templates and show these
 notifications to users in the user's system tray:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/tAzH8Og2Lql9nAcIRMOA.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/tAzH8Og2Lql9nAcIRMOA.png",
        alt="Notifications in system user tray", height="375", width="354" %}
 
 ## How they look {: #look }
@@ -22,22 +22,22 @@ message, and a contextMessage field, which is displayed as a 3rd text field in a
 
 A basic image:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/ZNTfa7vVa0sor219W0dk.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/ZNTfa7vVa0sor219W0dk.png",
        alt="Basic notification", height="175", width="479" %}
 
 List notifications display any number of list items:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/vFV3s1EW9gAPTog3khPE.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/vFV3s1EW9gAPTog3khPE.png",
        alt="List notification", height="200", width="400" %}
 
 Image notifications include an image preview:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/vtc3JD29GPhnAZSjxljc.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/vtc3JD29GPhnAZSjxljc.png",
        alt="Image notification", height="400", width="365" %}
 
 Progress notifications show a progress bar:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/cKPXPoLP0vqqenR88z9M.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/cKPXPoLP0vqqenR88z9M.png",
        alt="Progress notification", height="205", width="389" %}
 
 ## How they behave {: #behave }
@@ -51,13 +51,15 @@ notification center, and produce an error on other platforms. Priority 0 is the 
 Priorities > 0 are shown for increasing duration and more high priority notifications can be
 displayed in the system tray.
 
-<div class="aside aside--note"><strong>Platform difference:</strong> The <code>priority</code> does not affect the order of notifications in Chrome version 59+ on Mac OS X.</div>
+{% Aside %}
+**Platform difference:** The `code` priority does not affect the order of notifications in Chrome version 59+ on macOS.
+{% endAside %}
 
 In addition to displaying information, all notification types can include up to two action items.
-When users click on an action item, your app can respond with the appropriate action. For example,
+When users click on an action item, your extension can respond with the appropriate action. For example,
 when the user clicks on "Reply", the email app opens and the user can complete the reply:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/CozjuLjsi01Ch9KNBoAY.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/CozjuLjsi01Ch9KNBoAY.png",
        alt="Action in notification", height="275", width="392" %}
 
 ## How to develop them {: #develop }
@@ -72,7 +74,15 @@ chrome.notifications.create(id, options, creationCallback);
 The [notifications.NotificationOptions][4] must include a [notifications.TemplateType][5], which
 defines available notification details and how those details are displayed.
 
-<div class="aside aside--note"><b>Consider integrating with GCM!</b><br><a href="inform_users">Keep your users informed</a> all the time, even when your app isn't opened. The <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/samples/gcm-notifications">gcm-notifications sample</a> shows a simple integration between GCM and Rich Notifications API.</div>
+{% Aside %}
+
+**Consider integrating with GCM!**
+
+[Keep your users informed][6] all the time, even
+when your extension isn't opened. The [gcm-notifications sample][7] shows a simple
+integration between GCM and Rich Notifications API.
+
+{% endAside %}
 
 ### Create basic notification {: #basic }
 
@@ -107,10 +117,6 @@ var opt = {
   imageUrl: "url_to_preview_image"
 }
 ```
-
-In Chrome Apps, due to a strict [Content Security Policy][8] these URLs must point to a local
-resource or use a [blob or data URL][9]. Use a 3:2 ratio for your image; otherwise a black border
-frames the image.
 
 ### Create list notification {: #list }
 
@@ -167,17 +173,17 @@ function replyBtnClick {
 ```
 
 Consider including event listeners and handlers within the [event page][12], so that notifications
-can pop-up even when the app or extension isn't running.
+can pop-up even when the extension isn't running.
 
 [1]: https://developers.google.com/web/updates/2017/04/native-mac-os-notifications
-[2]: /docs/apps/notifications
-[3]: /docs/extensions/notifications#method-create
-[4]: /docs/extensions/notifications#type-NotificationOptions
-[5]: /docs/extensions/notifications#type-TemplateType
-[6]: /docs/extensions/inform_users
-[7]: https://github.com/GoogleChrome/chrome-app-samples/tree/master/samples/gcm-notifications
-[8]: /docs/extensions/mv3/contentSecurityPolicy
-[9]: /docs/extensions/app_external
-[10]: /docs/extensions/events
-[11]: /docs/extensions/notifications#event-onButtonClicked
-[12]: /docs/extensions/app_lifecycle#create_event_page
+[2]: /docs/extensions/reference/notifications
+[3]: /docs/extensions/reference/notifications#method-create
+[4]: /docs/extensions/reference/notifications#type-NotificationOptions
+[5]: /docs/extensions/reference/notifications#type-TemplateType
+[6]: /docs/extensions/reference/gcm
+[7]: https://github.com/GoogleChrome/chrome-extensions-samples/tree/master/apps/samples/gcm-notifications
+[8]: /docs/apps/contentSecurityPolicy
+[9]: /docs/apps/app_external
+[10]: /docs/extensions/reference/events
+[11]: /docs/extensions/reference/notifications#event-onButtonClicked
+[12]: /docs/apps/app_lifecycle#create_event_page

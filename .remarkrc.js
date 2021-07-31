@@ -6,9 +6,9 @@ exports.plugins = [
 
   // Remark Lint Style Guide preset and overrides.
   require('remark-preset-lint-markdown-style-guide'),
+  ['lint-code-block-style', false],
   ['lint-blockquote-indentation', false],
   ['lint-emphasis-marker', false],
-  // ['lint-fenced-code-flag', false],
   ['lint-hard-break-spaces', false],
   ['lint-link-title-style', false],
   ['lint-list-item-content-indent', false],
@@ -35,6 +35,8 @@ exports.plugins = [
   ['lint-table-pipe-alignment', false],
   ['lint-table-pipes', false],
   ['lint-unordered-list-marker-style', false],
+  ['lint-no-literal-urls', false],
+  ['lint-final-definition', false],
 
   // Third-party plugins.
   // Checks if headings are accidentally duplicated
@@ -44,5 +46,6 @@ exports.plugins = [
 
   // Custom plugins.
   require('./tools/linting/no-dash-spaces.js'),
+  require('./tools/linting/no-smart-quotes.js'),
   require('./tools/linting/no-unescaped-template-tags.js'),
 ];

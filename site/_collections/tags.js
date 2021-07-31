@@ -30,7 +30,7 @@ module.exports = function (collections) {
   /** @type Tags */
   const tags = {};
 
-  const allSorted = collections.getAllSorted().filter(drafts);
+  const allSorted = collections.getAllSorted().reverse().filter(drafts);
 
   /**
    * Iterates over every post in order to place them in the proper tag collections.
@@ -55,13 +55,18 @@ module.exports = function (collections) {
       continue allSortedForLoop;
     }
     // If tags is a string, turn it into an array.
-    if (item.data.tags === 'string') {
+    if (typeof item.data.tags === 'string') {
       item.data.tags = [item.data.tags];
     }
+    /** @type {string[]} */
+    const allTags = item.data.tags;
 
     // Handles posts that are also a Chrome release, `chrome-*`, therefore there are no supported tags.
-    const chromeTag = item.data.tags.find(tag => /^chrome-\d+$/.test(tag));
-    if (chromeTag) {
+    // Iterates through all possibilities as some posts may apply to many Chrome releases.
+    const chromeTags = allTags.filter(tag => /^chrome-\d+$/.test(tag));
+    while (chromeTags.length) {
+      const chromeTag = /** @type {string} */ (chromeTags.shift());
+
       /**
        * Creates the sub-object for a chrome release if it does not exist in the `tags` const above.
        */
@@ -96,9 +101,7 @@ module.exports = function (collections) {
     }
 
     // Handle all of the supported tags for a post.
-    /** @type string[] */
-    const postsTags = item.data.tags;
-    postsTagsForLoop: for (const postsTag of postsTags) {
+    postsTagsForLoop: for (const postsTag of allTags) {
       // If a tag isn't supported, skip over it in the `postsTagsForLoop`.
       if (!supportedTags[postsTag]) {
         continue postsTagsForLoop;

@@ -11,11 +11,26 @@ accessibility:
 amp:
   en: AMP
 
+autoplay:
+  en: autoplay
+
+chromium-chronicle:
+  en: Chromium Chronicle
+
+cookies:
+  en: Cookies
+
+deprecations:
+  en: Deprecations
+
 devices:
   en: Devices
 
 encryption:
   en: Encryption
+
+extensions:
+  en: Extensions
 
 feature-policy:
   en: Feature-policy
@@ -34,3 +49,30 @@ houdini:
 
 html:
   en: HTML
+
+media:
+  en: Media
+
+new-in-chrome:
+  en: New in Chrome
+
+privacy:
+  en: Privacy
+
+progressive-web-apps:
+  en: Progressive Web Apps
+
+removals:
+  en: Removals
+
+security:
+  en: Security
+
+devtools:
+  en: DevTools
+
+new-in-devtools:
+  en: What's New in DevTools
+
+devtools-engineering:
+  en: DevTools Engineering

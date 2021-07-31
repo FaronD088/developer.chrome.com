@@ -1,11 +1,8 @@
-timeout: 1200s # support 20 minutes as we are timing out at default 10 minutes
+timeout: 2700s # set build timeout to 45 mins
 steps:
 - name: node
   entrypoint: npm
   args: ['ci']
-- name: node
-  entrypoint: npm
-  args: ['run', 'postinstall']
 - name: node
   entrypoint: npm
   args: ['run', 'cloud-secrets']

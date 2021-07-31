@@ -7,9 +7,9 @@ description: >
   How to implement permissions to protect your users and your Extension.
 ---
 
-An extension’s ability to access websites and most Chrome APIs is determined by its declared
+An extension's ability to access websites and most Chrome APIs is determined by its declared
 [permissions][1]. Permissions should be restricted to only what is needed for its functionality.
-Limiting permissions establishes an extension’s capabilities and reduces possible incursion to data
+Limiting permissions establishes an extension's capabilities and reduces possible incursion to data
 if the extension is compromised by an attacker. Protect extensions and their users by implementing
 explicit, minimal and optional permissions.
 
@@ -53,7 +53,7 @@ A simple extension may need to request multiple permissions, and many permission
 [warnings][5] on installation. Users are more likely to trust an extension with limited warnings or
 when permissions are explained to them.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/VVyazEJTquUP7aa6OZn0.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/VVyazEJTquUP7aa6OZn0.png",
        alt="Extension permission warnings on installation", height="369", width="486" %}
 
 Identify the core functionality of an extension and what permissions are required for it. Consider
@@ -61,17 +61,17 @@ making features optional if they require permissions with warnings.
 
 ## Trigger optional permissions with events {: #optional_events }
 
-The [optional permissions sample extension’s][6] core functionality is overriding the new tab page.
-One feature is displaying the user’s goal of the day. This feature only requires the [storage][7]
+The [optional permissions sample extension's][6] core functionality is overriding the new tab page.
+One feature is displaying the user's goal of the day. This feature only requires the [storage][7]
 permission, which does not include a warning.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/wtbjayBDYDyKZe2x580P.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/wtbjayBDYDyKZe2x580P.png",
        alt="Extension button that enables additional features", height="350", width="395" %}
 
-The extension has an additional feature; displaying the user’s top sites. This feature requires the
+The extension has an additional feature; displaying the user's top sites. This feature requires the
 [topSites][8] permission, which has a warning.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/5edHzqeUOJ8V6XHkjNBM.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/5edHzqeUOJ8V6XHkjNBM.png",
        alt="Extension warning for topSites API", height="173", width="480" %}
 
 Developing features that rely on permissions with warnings as optional and introducing those
@@ -87,12 +87,12 @@ extension to use the [`"tabs"`][9] permission on the current tab. It replaces th
 
 Without activeTab:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/jb7SZPwm4zPoOT7BVMw3.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/jb7SZPwm4zPoOT7BVMw3.png",
        alt="Permissions UI without activeTab", height="190", width="490" %}
 
 With activeTab:
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/2QKcJJSz35suMsGSWXM4.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/2QKcJJSz35suMsGSWXM4.png",
        alt="Permissions UI with activeTab", height="190", width="490" %}
 
 The `activeTab` permission grants an extension temporary access to the currently active tab when the
@@ -102,7 +102,7 @@ the tab is navigated or closed.
 
 While the `activeTab` permission is enabled for a tab, an extension can:
 
-- Call [`tabs.executeScript`][11] or [`tabs.insertCSS`][12] on that tab.
+- Call [`scripting.insertCSS`][12] on that tab.
 - Get the URL, title, and favicon for that tab via an API that returns a [`tabs.Tab`][13] object.
 - Intercept network requests in the tab to the tab's main frame origin using the [webRequest][14]
   API. The extension temporarily gets host permissions for the tab's main frame origin.
@@ -118,9 +118,9 @@ The following user gestures enable `activeTab`:
 ## Allowing access {: #allow_access }
 
 If an extension needs to access `file://` URLs or operate in incognito mode, users will need to
-enable access for those features inside the extension’s detail page at chrome://extensions.
+enable access for those features inside the extension's detail page at chrome://extensions.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/CXSHPxG4giUkzfGR67mY.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/CXSHPxG4giUkzfGR67mY.png",
        alt="Allow file urls and incognito mode on the extension detial page", height="137", width="674" %}
 
 An extension can detect if it is enabled in incognito mode by calling
@@ -146,19 +146,19 @@ No permission warnings will be displayed if an extension is loaded as an unpacke
 extension's permission warnings, navigate to `chrome://extensions`, ensure developer mode is enabled
 and click **PACK EXTENSION**.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/Jvm8mGpe3j0j0aydcRnR.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/Jvm8mGpe3j0j0aydcRnR.png",
        alt="Developer Mode is Checked then Click Pack Extension", height="120", width="642" %}
 
-Specify the path to the extension’s folder in the Extension root directory field then click the
+Specify the path to the extension's folder in the Extension root directory field then click the
 **Pack Extension** button. Ignore the **Private key** field for a first-time package.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/vVw89rdJOdXFYxvgM9Sj.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/vVw89rdJOdXFYxvgM9Sj.png",
        alt="Specify Extension Path then Click Pack Extension", height="307", width="524" %}
 
-Chrome will create two files, a `.crx` file and a `.pem` file, which contains the extension’s
+Chrome will create two files, a `.crx` file and a `.pem` file, which contains the extension's
 private key.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/GLrVd51VTUF86K8gUxu8.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/GLrVd51VTUF86K8gUxu8.png",
        alt="Packaged Extension Files", height="288", width="521" %}
 
 **Do not lose the private key!** Keep the `.pem` file in a secret and secure place; it will be
@@ -166,13 +166,13 @@ needed to [update][25] the extension.
 
 Install the `.crx` file by dropping it into the Chrome Extension's Management page.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/KXm9vTnv5VRNZJ9e2AJt.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/KXm9vTnv5VRNZJ9e2AJt.png",
        alt="Drop File to Install", height="420", width="427" %}
 
 After dropping the `.crx` file the browser will ask if the extension can be added and display
 warnings.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/4vOB4X8ZNbdk321eAzKS.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/4vOB4X8ZNbdk321eAzKS.png",
        alt="Warning for New Tab Extension", height="150", width="481" %}
 
 ### Permissions with warnings {: #permissions_with_warnings }
@@ -183,7 +183,156 @@ other permissions. For example, the [`"tabs"`][26] warning will not show if the 
 requests `"<all_urls>"`. To verify the most recent warnings shown for extension permissions, follow
 the steps in [Viewing Warnings][27].
 
-<table><tbody><tr><th>Permission</th><th>Description</th><th>Warning</th></tr><tr id="match_patterns"><td><ul><li><code>"http://*/*"</code></li><li><code>"https://*/*"</code></li><li><code>"*://*/*"</code></li><li><code>"&lt;all_urls&gt;"</code></li></ul></td><td>Grants the extension access to all hosts. It may be possible to avoid declaring any host permissions by using the <a href="#activeTab_permission">activeTab</a> permission.</td><td><strong>Read and change all your data on the websites you visit</strong></td></tr><tr id="host"><td><code>"https://HostName.com/"</code></td><td>Grants the extension access to <code>"https://HostName.com/"</code>. It may be possible to avoid declaring any host permissions by using the <a href="#activeTab_permission">activeTab</a> permission.</td><td><strong>Read and change your data on <code>HostName.com</code></strong></td></tr><tr id="bookmarks"><td><code>"bookmarks"</code></td><td>Grants your extension access to the <a href="bookmarks">chrome.bookmarks</a> API.</td><td><strong>Read and change your bookmarks</strong></td></tr><tr id="clipboardRead"><td><code>"clipboardRead"</code></td><td>Required if the extension uses <code>document.execCommand('paste')</code>.</td><td><strong>Read data you copy and paste</strong></td></tr><tr id="clipboardWrite"><td><code>"clipboardWrite"</code></td><td>Indicates the extension uses <code>document.execCommand('copy')</code> or <code>document.execCommand('cut')</code>.</td><td><strong>Modify data you copy and paste</strong></td></tr><tr id="contentSettings"><td><code>"contentSettings"</code></td><td>Grants your extension access to the <a href="contentSettings">chrome.contentSettings</a> API.</td><td><strong>Change your settings that control websites' access to features such as cookies, JavaScript, plugins, geolocation, microphone, camera etc.</strong></td></tr><tr id="debugger"><td><code>"debugger"</code></td><td>Grants your extension access to the <a href="debugger">chrome.debugger</a> API.</td><td><ul><li><strong>Access the page debugger backend</strong></li><li><strong>Read and change all your data on the websites you visit</strong></li></ul></td></tr><tr id="declarativeNetRequest"><td><code>"declarativeNetRequest"</code></td><td>Grants your extension access to the <a href="declarativeNetRequest">chrome.declarativeNetRequest</a> API.</td><td><strong>Block page content</strong></td></tr><tr id="desktopCapture"><td><code>"desktopCapture"</code></td><td>Grants your extension access to the <a href="desktopCapture">chrome.desktopCapture</a> API.</td><td><strong>Capture content of your screen</strong></td></tr><tr id="downloads"><td><code>"downloads"</code></td><td>Grants your extension access to the <a href="downloads">chrome.downloads</a> API.</td><td><strong>Manage your downloads</strong></td></tr><tr id="geolocation"><td><code>"geolocation"</code></td><td>Allows the extension to use the HTML5 <a href="http://dev.w3.org/geo/api/spec-source.html">geolocation API</a> without prompting the user for permission.</td><td><strong>Detect your physical location</strong></td></tr><tr id="history"><td><code>"history"</code></td><td>Grants your extension access to the <a href="history">chrome.history</a> API.</td><td><strong>Read and change your browsing history</strong></td></tr><tr id="management"><td><code>"management"</code></td><td>Grants the extension access to the <a href="management">chrome.management</a> API.</td><td><strong>Manage your apps, extensions, and themes</strong></td></tr><tr id="nativeMessaging"><td><code>"nativeMessaging"</code></td><td>Gives the extension access to the <a href="messaging.html#native-messaging">native messaging API</a>.</td><td><strong>Communicate with cooperating native applications</strong></td></tr><tr id="notifications"><td><code>"notifications"</code></td><td>Grants your extension access to the <a href="notifications">chrome.notifications</a> API.</td><td><strong>Display notifications</strong></td></tr><tr id="pageCapture"><td><code>"pageCapture"</code></td><td>Grants the extension access to the <a href="pageCapture">chrome.pageCapture</a> API.</td><td><strong>Read and change all your data on the websites you visit</strong></td></tr><tr id="privacy"><td><code>"privacy"</code></td><td>Gives the extension access to the <a href="privacy">chrome.privacy</a> API.</td><td><strong>Change your privacy-related settings</strong></td></tr><tr id="proxy"><td><code>"proxy"</code></td><td>Grants the extension access to the <a href="proxy">chrome.proxy</a> API.</td><td><strong>Read and change all your data on the websites you visit</strong></td></tr><tr id="system.storage"><td><code>"system.storage"</code></td><td>Grants the extension access to the <a href="system.storage">chrome.system.storage</a> API.</td><td><strong>Identify and eject storage devices</strong></td></tr><tr id="tabCapture"><td><code>"tabCapture"</code></td><td>Grants the extensions access to the <a href="tabCapture">chrome.tabCapture</a> API.</td><td><strong>Read and change all your data on the websites you visit</strong></td></tr><tr id="tabs"><td><code>"tabs"</code></td><td>Grants the extension access to privileged fields of the <a href="https://developer.chrome.com/extensions/tabs#type-Tab"><code>Tab</code></a> objects used by several APIs including <a href="/extensions/tabs">chrome.tabs</a> and <a href="/extensions/windows">chrome.windows</a>. In many circumstances the extension will not need to declare the <code>"tabs"</code> permission to make use of these APIs.</td><td><strong>Read your browsing history</strong></td></tr><tr id="topSites"><td><code>"topSites"</code></td><td>Grants the extension access to the <a href="topSites">chrome.topSites</a> API.</td><td><strong>Read a list of your most frequently visited websites</strong></td></tr><tr id="ttsEngine"><td><code>"ttsEngine"</code></td><td>Grants the extension access to the <a href="ttsEngine">chrome.ttsEngine</a> API.</td><td><strong>Read all text spoken using synthesized speech</strong></td></tr><tr id="webNavigation"><td><code>"webNavigation"</code></td><td>Grants the extension access to the <a href="webNavigation">chrome.webNavigation</a> API.</td><td><strong>Read your browsing history</strong></td></tr></tbody></table>
+<table>
+  <tbody>
+    <tr>
+      <th>Permission</th>
+      <th>Description</th>
+      <th>Warning</th>
+    </tr>
+    <tr id="match_patterns">
+      <td>
+        <ul>
+          <li><code>"http://*/*"</code></li>
+          <li><code>"https://*/*"</code></li>
+          <li><code>"*://*/*"</code></li>
+          <li><code>"&lt;all_urls&gt;"</code></li>
+        </ul>
+      </td>
+      <td>Grants the extension access to all hosts. It may be possible to avoid declaring any host permissions by using
+        the <a href="#activeTab_permission">activeTab</a> permission.</td>
+      <td><strong>Read and change all your data on the websites you visit</strong></td>
+    </tr>
+    <tr id="host">
+      <td><code>"https://HostName.com/"</code></td>
+      <td>Grants the extension access to <code>"https://HostName.com/"</code>. It may be possible to avoid declaring any
+        host permissions by using the <a href="#activeTab_permission">activeTab</a> permission.</td>
+      <td><strong>Read and change your data on <code>HostName.com</code></strong></td>
+    </tr>
+    <tr id="bookmarks">
+      <td><code>"bookmarks"</code></td>
+      <td>Grants your extension access to the <a href="/docs/extensions/reference/bookmarks">chrome.bookmarks</a> API.</td>
+      <td><strong>Read and change your bookmarks</strong></td>
+    </tr>
+    <tr id="clipboardRead">
+      <td><code>"clipboardRead"</code></td>
+      <td>Required if the extension uses <code>document.execCommand('paste')</code>.</td>
+      <td><strong>Read data you copy and paste</strong></td>
+    </tr>
+    <tr id="clipboardWrite">
+      <td><code>"clipboardWrite"</code></td>
+      <td>Indicates the extension uses <code>document.execCommand('copy')</code> or
+        <code>document.execCommand('cut')</code>.</td>
+      <td><strong>Modify data you copy and paste</strong></td>
+    </tr>
+    <tr id="contentSettings">
+      <td><code>"contentSettings"</code></td>
+      <td>Grants your extension access to the <a href="/docs/extensions/reference/contentSettings">chrome.contentSettings</a> API.</td>
+      <td><strong>Change your settings that control websites' access to features such as cookies, JavaScript, plugins,
+          geolocation, microphone, camera etc.</strong></td>
+    </tr>
+    <tr id="debugger">
+      <td><code>"debugger"</code></td>
+      <td>Grants your extension access to the <a href="/docs/extensions/reference/debugger">chrome.debugger</a> API.</td>
+      <td>
+        <ul>
+          <li><strong>Access the page debugger backend</strong></li>
+          <li><strong>Read and change all your data on the websites you visit</strong></li>
+        </ul>
+      </td>
+    </tr>
+    <tr id="declarativeNetRequest">
+      <td><code>"declarativeNetRequest"</code></td>
+      <td>Grants your extension access to the <a href="/docs/extensions/reference/declarativeNetRequest">chrome.declarativeNetRequest</a> API.</td>
+      <td><strong>Block page content</strong></td>
+    </tr>
+    <tr id="desktopCapture">
+      <td><code>"desktopCapture"</code></td>
+      <td>Grants your extension access to the <a href="/docs/extensions/reference/desktopCapture">chrome.desktopCapture</a> API.</td>
+      <td><strong>Capture content of your screen</strong></td>
+    </tr>
+    <tr id="downloads">
+      <td><code>"downloads"</code></td>
+      <td>Grants your extension access to the <a href="/docs/extensions/reference/downloads">chrome.downloads</a> API.</td>
+      <td><strong>Manage your downloads</strong></td>
+    </tr>
+    <tr id="geolocation">
+      <td><code>"geolocation"</code></td>
+      <td>Allows the extension to use the HTML5 <a href="http://dev.w3.org/geo/api/spec-source.html">geolocation API</a>
+        without prompting the user for permission.</td>
+      <td><strong>Detect your physical location</strong></td>
+    </tr>
+    <tr id="history">
+      <td><code>"history"</code></td>
+      <td>Grants your extension access to the <a href="/docs/extensions/reference/history">chrome.history</a> API.</td>
+      <td><strong>Read and change your browsing history</strong></td>
+    </tr>
+    <tr id="management">
+      <td><code>"management"</code></td>
+      <td>Grants the extension access to the <a href="/docs/extensions/reference/management">chrome.management</a> API.</td>
+      <td><strong>Manage your apps, extensions, and themes</strong></td>
+    </tr>
+    <tr id="nativeMessaging">
+      <td><code>"nativeMessaging"</code></td>
+      <td>Gives the extension access to the <a href="/docs/extensions/mv3/messaging#native-messaging">native messaging API</a>.</td>
+      <td><strong>Communicate with cooperating native applications</strong></td>
+    </tr>
+    <tr id="notifications">
+      <td><code>"notifications"</code></td>
+      <td>Grants your extension access to the <a href="/docs/extensions/reference/notifications">chrome.notifications</a> API.</td>
+      <td><strong>Display notifications</strong></td>
+    </tr>
+    <tr id="pageCapture">
+      <td><code>"pageCapture"</code></td>
+      <td>Grants the extension access to the <a href="/docs/extensions/reference/pageCapture">chrome.pageCapture</a> API.</td>
+      <td><strong>Read and change all your data on the websites you visit</strong></td>
+    </tr>
+    <tr id="privacy">
+      <td><code>"privacy"</code></td>
+      <td>Gives the extension access to the <a href="/docs/extensions/reference/privacy">chrome.privacy</a> API.</td>
+      <td><strong>Change your privacy-related settings</strong></td>
+    </tr>
+    <tr id="proxy">
+      <td><code>"proxy"</code></td>
+      <td>Grants the extension access to the <a href="/docs/extensions/reference/proxy">chrome.proxy</a> API.</td>
+      <td><strong>Read and change all your data on the websites you visit</strong></td>
+    </tr>
+    <tr id="system.storage">
+      <td><code>"system.storage"</code></td>
+      <td>Grants the extension access to the <a href="/docs/extensions/reference/system.storage">chrome.system.storage</a> API.</td>
+      <td><strong>Identify and eject storage devices</strong></td>
+    </tr>
+    <tr id="tabCapture">
+      <td><code>"tabCapture"</code></td>
+      <td>Grants the extensions access to the <a href="/docs/extensions/reference/tabCapture">chrome.tabCapture</a> API.</td>
+      <td><strong>Read and change all your data on the websites you visit</strong></td>
+    </tr>
+    <tr id="tabs">
+      <td><code>"tabs"</code></td>
+      <td>Grants the extension access to privileged fields of the <a
+          href="/extensions/tabs#type-Tab"><code>Tab</code></a> objects used by several APIs
+        including <a href="/extensions/tabs">chrome.tabs</a> and <a href="/docs/extensions/reference/windows">chrome.windows</a>. In
+        many circumstances the extension will not need to declare the <code>"tabs"</code> permission to make use of
+        these APIs.</td>
+      <td><strong>Read your browsing history</strong></td>
+    </tr>
+    <tr id="topSites">
+      <td><code>"topSites"</code></td>
+      <td>Grants the extension access to the <a href="/docs/extensions/reference/topSites">chrome.topSites</a> API.</td>
+      <td><strong>Read a list of your most frequently visited websites</strong></td>
+    </tr>
+    <tr id="ttsEngine">
+      <td><code>"ttsEngine"</code></td>
+      <td>Grants the extension access to the <a href="/docs/extensions/reference/ttsEngine">chrome.ttsEngine</a> API.</td>
+      <td><strong>Read all text spoken using synthesized speech</strong></td>
+    </tr>
+    <tr id="webNavigation">
+      <td><code>"webNavigation"</code></td>
+      <td>Grants the extension access to the <a href="/docs/extensions/reference/webNavigation">chrome.webNavigation</a> API.</td>
+      <td><strong>Read your browsing history</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Update permissions {: #update_permissions }
 
@@ -193,16 +342,16 @@ re-enable it after agreeing to any new warnings.
 If the user manually updates an extension that now includes the [tabs][52] permission, they will get
 a warning on the management page.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/gotD9HeWU8LsFdacTQkq.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/gotD9HeWU8LsFdacTQkq.png",
        alt="Adding tabs Permission", height="193", width="481" %}
 
 If the extension is updated automatically it will be disabled until the user agrees to the new
 permissions.
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/usZSh31pGiJxhhuKmM8B.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/usZSh31pGiJxhhuKmM8B.png",
        alt="Extension has been disabled", height="398", width="297" %}
 
-{% img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/ZxRaaibQJSuZ6MZBvmmo.png",
+{% Img src="image/BrQidfK9jaQyIHwdw91aVpkPiib2/ZxRaaibQJSuZ6MZBvmmo.png",
        alt="Agree to permissions", height="159", width="286" %}
 
 This can be avoided by making the new feature optional and adding new permission updates to
@@ -218,8 +367,7 @@ This can be avoided by making the new feature optional and adding new permission
 [8]: /docs/extensions/reference/topSites
 [9]: /docs/extensions/reference/tabs
 [10]: #p_activeTab_gestures
-[11]: /docs/extensions/reference/tabs#method-executeScript
-[12]: /docs/extensions/reference/tabs#method-insertCSS
+[12]: /docs/extensions/reference/scripting#method-insertCSS
 [13]: /docs/extensions/reference/tabs#type-Tab
 [14]: /docs/extensions/reference/webRequest
 [15]: /docs/extensions/reference/browserAction
@@ -261,4 +409,4 @@ This can be avoided by making the new feature optional and adding new permission
 [51]: /docs/extensions/webNavigation
 [52]: /docs/extensions/reference/tabs
 [53]: /docs/extensions/reference/permissions#step-2-declare-optional-permissions-in-the-manifest
-[54]: /docs/extensions/reference/manifest
+[54]: /docs/extensions/mv3/manifest

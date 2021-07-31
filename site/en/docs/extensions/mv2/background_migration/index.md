@@ -15,7 +15,7 @@ extension. Most extension functionality can be supported by an event based backg
 under [rare circumstances][1] should an extension have a persistent background, as they constantly
 consume system resources and can cause a strain on lower-powered devices.
 
-Enhance an extension’s performance by migrating a persistent background script to an event-based
+Enhance an extension's performance by migrating a persistent background script to an event-based
 non-persistent model.
 
 ## Designate persistence as false {: #persistence }
@@ -76,7 +76,7 @@ chrome.runtime.onStartup.addListener(function() {
 Use the [storage API][3] to set and return states and values. Use `local.set` to update on the local
 machine.
 
-```
+```js
   chrome.storage.local.set({ variable: variableInformation });
 ```
 
@@ -146,8 +146,8 @@ document.getElementById('target').addEventListener('click', function() {
 ```
 
 [1]: /docs/extensions/mv2/background_pages#persistentWarning
-[2]: /docs/extensions/mv2/tabs
-[3]: /docs/extensions/storage
-[4]: /docs/extensions/alarms
-[5]: /docs/extensions/extension#method-getBackgroundPage
-[6]: /docs/extensions/runtime#method-getBackgroundPage
+[2]: /docs/extensions/reference/tabs
+[3]: /docs/extensions/reference/storage
+[4]: /docs/extensions/reference/alarms
+[5]: /docs/extensions/reference/extension#method-getBackgroundPage
+[6]: /docs/extensions/reference/runtime#method-getBackgroundPage
